@@ -23,9 +23,14 @@ Windows default shell is limited. SuperCMD offers a smoother, more practical, an
 
 ## 🚀 Quick Start
 
-1. 📥 Clone:
+1. 📥 Clone & Build:
 
 ```bash
 git clone https://github.com/MohammadIcm4007/better-cmd.git
 cd better-cmd
+build
 ```
+
+2. 📥 install:
+
+> Move the `build` folder to your desired installation directory, then add the `src` directory inside it to your system's PATH environment variable to run the program from anywhere
