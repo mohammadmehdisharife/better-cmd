@@ -15,9 +15,9 @@
 
 ---
 
-## 🎯 Why SuperCMD?
+## 🎯 Why Better-CMD?
 
-Windows default shell is limited. SuperCMD offers a smoother, more practical, and modern experience inspired by Bash while maintaining full compatibility with classic `cmd.exe`. No bloat, no complexity.
+Windows default shell is limited. Better-CMD offers a smoother, more practical, and modern experience inspired by Bash while maintaining full compatibility with classic `cmd.exe`. No bloat, no complexity.
 
 ---
 
