@@ -14,4 +14,6 @@ if not fileExists(args[0]):
   echo "Created file: " & args[0]
   stdout.write("\e[0m")       
 else:
+  stdout.write("\e[1;31m")    
   echo "File already exists: " & args[0]
+  stdout.write("\e[0m")       
