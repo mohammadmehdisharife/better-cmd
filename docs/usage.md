@@ -14,3 +14,15 @@
   Creates a new, empty file with the specified name.  
   If the file already exists, an error is raised and the operation is aborted to prevent accidental overwrites.  
   This behavior ensures safety and prevents unintentional data loss. 🔐
+
+- **`pwd`** 📍  
+  Prints the current working directory path.  
+  This command serves as an alias for Windows' native `cd` command (without arguments), providing UNIX-like behavior to show the present directory.
+
+- **`cat <file(s)>`** 📖  
+  Concatenates and displays the content of one or more files to the terminal.  
+  If a file does not exist or cannot be opened, a clear error message is displayed without stopping the entire operation.
+
+- **`now`** ⏰  
+  Displays the current local date and time in the format `YYYY-MM-DD HH:MM:SS`.  
+  Useful for timestamping or quick time checks directly from the command line.
