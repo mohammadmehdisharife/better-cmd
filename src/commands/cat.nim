@@ -1,5 +1,5 @@
 import os, strformat
-include "../libs/ansi_colors.nim"
+include "../../libs/ansi_colors.nim"
 
 proc printFile(filename: string) =
   if not fileExists(filename):

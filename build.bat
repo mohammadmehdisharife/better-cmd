@@ -2,7 +2,7 @@
 rmdir /s /q build
 mkdir build
 
-set SRC=src
+set SRC=src\commands
 set BUILD=build
 
 for %%F in (touch ls cat now) do (

@@ -1,5 +1,5 @@
 import os, strformat
-include "../libs/ansi_colors.nim"
+include "../../libs/ansi_colors.nim"
 
 let args = commandLineParams()
 
