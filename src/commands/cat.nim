@@ -15,7 +15,7 @@ proc printFile(filename: string) =
 when isMainModule:
   let args = commandLineParams()
   if args.len == 0:
-    echo fmt"{BoldRed}cat: no files provided.{Reset}"
+    echo fmt"{BoldRed}Usage: cat <file-name>{Reset}"
     quit(1)
   for file in args:
     printFile(file)

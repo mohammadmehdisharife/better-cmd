@@ -4,7 +4,7 @@ include "../../libs/ansi_colors.nim"
 let args = commandLineParams()
 
 if args.len == 0:
-  echo fmt"{BoldRed}Usage: program <file-name>{Reset}"
+  echo fmt"{BoldRed}Usage: touch <file-name>{Reset}"
   quit(1)
 
 if not fileExists(args[0]):
