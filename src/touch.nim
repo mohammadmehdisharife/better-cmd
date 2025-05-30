@@ -1,19 +1,14 @@
-import os
+import os, strformat
+include "../libs/ansi_colors.nim"
 
 let args = commandLineParams()
 
 if args.len == 0:
-  stdout.write("\e[1;31m")   
-  echo "Usage: program <file-name>"
-  stdout.write("\e[0m")      
+  echo fmt"{BoldRed}Usage: program <file-name>{Reset}"
   quit(1)
 
 if not fileExists(args[0]):
   writeFile(args[0], "")
-  stdout.write("\e[1;32m")    
-  echo "Created file: " & args[0]
-  stdout.write("\e[0m")       
+  echo fmt"{BoldGreen}Created file: {args[0]}{Reset}"
 else:
-  stdout.write("\e[1;31m")    
-  echo "File already exists: " & args[0]
-  stdout.write("\e[0m")       
+  echo fmt"{BoldRed}File already exists: {args[0]}{Reset}"
