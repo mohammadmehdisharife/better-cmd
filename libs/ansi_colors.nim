@@ -17,3 +17,5 @@ const
   BoldTurquoise   = "\x1b[1;38;5;80m"
   BoldGold        = "\x1b[1;38;5;220m"
   BoldCoral       = "\x1b[1;38;5;203m"
+  # ACSII rest settings
+  Reset           = "\x1b[0m"

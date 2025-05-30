@@ -1,8 +1,9 @@
-import os
+import os, strformat
+include "../libs/ansi_colors.nim"
 
 for kind, path in walkDir("."):
   let name = extractFilename(path)
   if kind == pcDir:
-    stdout.write("\e[1;33m[DIR]  " & name & "\e[0m\n")
+    echo fmt"{BoldYellow}[DIR]  {name}{Reset}"
   else:
-    stdout.write("\e[37;1m[FILE] " & name & "\e[0m\n")
+    echo fmt"{BoldWhite}[FILE] {name}{Reset}"

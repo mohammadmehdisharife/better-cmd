@@ -1,19 +1,16 @@
+@echo off
 rmdir /s /q build
 mkdir build
 
-@REM compile and move to build folder
-nim c -d:release .\src\touch.nim
-move .\src\touch.exe .\build
+set SRC=src
+set BUILD=build
 
-nim c -d:release .\src\ls.nim
-move .\src\ls.exe .\build
+for %%F in (touch ls cat now) do (
+    echo Compiling %%F...
+    nim c -d:release %SRC%\%%F.nim
+    move %SRC%\%%F.exe %BUILD%\
+)
 
-nim c -d:release .\src\cat.nim
-move .\src\cat.exe .\build
-
-nim c -d:release .\src\now.nim
-move .\src\now.exe .\build
-
-copy .\src\clear.bat .\build
-
-copy .\src\pwd.bat .\build
+copy %SRC%\clear.bat %BUILD%\
+copy %SRC%\pwd.bat %BUILD%\
+echo Done.
