@@ -104,15 +104,15 @@ int getMilliseconds() {
 #endif
 
 void printUsage(const char *progName) {
-    printf("Usage: %s [-u] [-f FORMAT] [-t TIMESTAMP] [-I ISO8601] [-i] [-m] [--json] [-h|--help]\n", progName);
-    printf("  -u           " ANSI_BOLD_YELLOW "Print time in UTC (default local time)" COLOR_RESET "\n");
-    printf("  -f FORMAT    " ANSI_BOLD_YELLOW "Specify strftime format string (default: \"%s\")" COLOR_RESET "\n", DEFAULT_FORMAT);
-    printf("  -t TIMESTAMP " ANSI_BOLD_YELLOW "Print time for given UNIX timestamp (seconds since epoch)" COLOR_RESET "\n");
-    printf("  -I ISO8601   " ANSI_BOLD_YELLOW "Parse ISO8601 time string (e.g. 2025-06-05T14:30:00Z)" COLOR_RESET "\n");
-    printf("  -i           " ANSI_BOLD_YELLOW "Output time in ISO8601 format" COLOR_RESET "\n");
-    printf("  -m           " ANSI_BOLD_YELLOW "Print milliseconds (only with current time)" COLOR_RESET "\n");
-    printf("  --json       " ANSI_BOLD_YELLOW "Output result in JSON format" COLOR_RESET "\n");
-    printf("  -h, --help   " ANSI_BOLD_YELLOW "Show this help message" COLOR_RESET "\n");
+    printf(ANSI_BOLD_YELLOW"Usage: %s [-u] [-f FORMAT] [-t TIMESTAMP] [-I ISO8601] [-i] [-m] [--json] [-h|--help]\n", progName);
+    printf("  -u           Print time in UTC (default local time)"  "\n");
+    printf("  -f FORMAT    Specify strftime format string (default: \"%s\")\n", DEFAULT_FORMAT);
+    printf("  -t TIMESTAMP Print time for given UNIX timestamp (seconds since epoch)\n");
+    printf("  -I ISO8601   Parse ISO8601 time string (e.g. 2025-06-05T14:30:00Z)\n");
+    printf("  -i           Output time in ISO8601 format"  "\n");
+    printf("  -m           Print milliseconds (only with current time)\n");
+    printf("  --json       Output result in JSON format\n");
+    printf("  -h, --help   Show this help message\n" COLOR_RESET);
 }
 
 int main(int argc, char *argv[]) {
@@ -163,7 +163,7 @@ int main(int argc, char *argv[]) {
             outputISO = 1;
         } else if (strcmp(argv[i], "-m") == 0) {
             printMillis = 1;
-        } else if (strcmp(argv[i], "--json") == 0) {
+        } else if (strcmp(argv[i], "--json") == 0 || strcmp(argv[i], "-j") == 0) {
             outputJSON = 1;
         } else if (strcmp(argv[i], "-h") == 0 || strcmp(argv[i], "--help") == 0) {
             printUsage(argv[0]);
