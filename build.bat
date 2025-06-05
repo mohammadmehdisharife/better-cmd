@@ -1,43 +1,28 @@
 @echo off
-setlocal
+rem --- Configuration ---
+set SRC=src\commands
+set BUILD=better-cmd\bin
 
-:: --- Configuration ---
-set "NIM=nim"
-set "SRC_DIR=src\commands"
-set "BUILD_DIR=better-cmd\bin"
-set "OUT_DIR=better-cmd"
-set "SCRIPT_DIR=%~dp0"
-set "FILES=touch ls ll cat now pwd"
-set "BAT_FILE=clear.bat"
-set "INSTALL_VBS=install.vbs"
-set "UNINSTALL_VBS=uninstall.vbs"
+rem --- Cleanup ---
+rmdir /s /q better-cmd
+mkdir %BUILD%
 
-:: --- Clean previous build ---
-echo Cleaning previous build...
-rmdir /s /q "%OUT_DIR%" >nul 2>&1
-mkdir "%BUILD_DIR%" >nul
-
-:: --- Compile Nim commands ---
-echo.
-echo Compiling commands:
-for %%F in (%FILES%) do (
-    echo   Compiling %%F...
-    %NIM% c -d:release "%SRC_DIR%\%%F.nim"
-    if exist "%SRC_DIR%\%%F.exe" (
-        move /Y "%SRC_DIR%\%%F.exe" "%BUILD_DIR%\" >nul
-    ) else (
-        echo     [ERROR] Failed to compile %%F.nim
-    )
+rem --- Compile Nim commands ---
+for %%F in (touch now pwd cat) do (
+    echo Compiling Nim command %%F...
+    nim c -d:release %SRC%\%%F.nim
+    move %SRC%\%%F.exe %BUILD%\
 )
 
-:: --- Copy support files ---
-echo.
-echo Copying support files...
-copy /Y "%SRC_DIR%\%BAT_FILE%" "%BUILD_DIR%\" >nul
-copy /Y "%SCRIPT_DIR%%INSTALL_VBS%" "%OUT_DIR%\" >nul
-copy /Y "%SCRIPT_DIR%%UNINSTALL_VBS%" "%OUT_DIR%\" >nul
+rem --- Compile C commands ---
+for %%F in (ls ll) do (
+    echo Compiling C command %%F...
+    gcc -o %BUILD%\%%F.exe %SRC%\%%F.c
+)
 
-:: --- Done ---
-echo.
-echo [✓] Build complete. Output in: %OUT_DIR%
-endlocal
+rem --- Copy additional files ---
+copy %SRC%\clear.bat %BUILD%\
+copy install.vbs better-cmd\
+copy uninstall.vbs better-cmd\
+
+echo Build complete.
