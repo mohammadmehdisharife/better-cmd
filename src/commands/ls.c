@@ -22,8 +22,16 @@ int getTerminalWidth() {
     return 80; // fallback
 }
 
-int main() {
+int main(int argc, char *argv[]) {
     setConsoleUTF8();
+
+    int showHidden = 0;
+    for (int i = 1; i < argc; i++) {
+        if (strcmp(argv[i], "-a") == 0) {
+            showHidden = 1;
+            break;
+        }
+    }
 
     WIN32_FIND_DATAA findFileData;
     HANDLE hFind;
@@ -38,13 +46,17 @@ int main() {
 
     do {
         if (count >= MAX_FILES) break;
+
+        if (!showHidden && findFileData.cFileName[0] == '.') {
+            continue;
+        }
+
         strcpy(files[count].name, findFileData.cFileName);
         files[count].attr = findFileData.dwFileAttributes;
         count++;
     } while (FindNextFileA(hFind, &findFileData));
     FindClose(hFind);
 
-    // Find max name length
     int maxNameLen = 0;
     for (int i = 0; i < count; i++) {
         int len = (int)strlen(files[i].name);
@@ -55,7 +67,6 @@ int main() {
     int termWidth = getTerminalWidth();
     int columns = (termWidth / colWidth) > 0 ? (termWidth / colWidth) : 1;
 
-    // Print files in columns
     for (int i = 0; i < count; i++) {
         const char* symbol = (files[i].attr & FILE_ATTRIBUTE_DIRECTORY) ? "📁" : "📄";
         printf("%s|%-*s", symbol, colWidth - 2, files[i].name);
