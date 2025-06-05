@@ -11,11 +11,11 @@
 #define MAX_FORMAT_LEN 100
 #define MAX_BUFFER_SIZE 256
 
-#define COLOR_RED    "\x1b[1;31m"
-#define COLOR_GREEN  "\x1b[1;32m"
-#define COLOR_YELLOW "\x1b[1;33m"
-#define COLOR_CYAN   "\x1b[1;36m"
-#define COLOR_RESET  "\x1b[0m"
+#define COLOR_RED          "\x1b[1;31m"
+#define COLOR_GREEN        "\x1b[1;32m"
+#define ANSI_BOLD_YELLOW   "\x1b[1;33m"
+#define COLOR_CYAN         "\x1b[1;36m"
+#define COLOR_RESET        "\x1b[0m"
 
 int getFormattedTime(char *buffer, size_t bufsize, const char *format, int useUTC, time_t *customTime) {
     struct tm timeinfo;
@@ -52,17 +52,12 @@ int getFormattedTime(char *buffer, size_t bufsize, const char *format, int useUT
 
 int parseISO8601(const char *isoStr, time_t *outTime) {
     struct tm timeinfo = {0};
-    char *res;
-
-    if (strlen(isoStr) < 19) return -1;
 
 #ifdef _WIN32
-    res = NULL; // strptime در ویندوز وجود ندارد
-    // یک پیاده‌سازی ساده برای فرمت مشخص:
     int year, month, day, hour, min, sec;
     if (sscanf(isoStr, "%4d-%2d-%2dT%2d:%2d:%2d", &year, &month, &day, &hour, &min, &sec) == 6) {
         timeinfo.tm_year = year - 1900;
-        timeinfo.tm_mon = month -1;
+        timeinfo.tm_mon = month - 1;
         timeinfo.tm_mday = day;
         timeinfo.tm_hour = hour;
         timeinfo.tm_min = min;
@@ -76,7 +71,7 @@ int parseISO8601(const char *isoStr, time_t *outTime) {
     }
     return -1;
 #else
-    res = strptime(isoStr, "%Y-%m-%dT%H:%M:%S", &timeinfo);
+    char *res = strptime(isoStr, "%Y-%m-%dT%H:%M:%S", &timeinfo);
     if (!res) return -1;
 
     if (*res == 'Z') {
@@ -95,8 +90,6 @@ int getMilliseconds() {
     GetSystemTimeAsFileTime(&ft);
     uli.LowPart = ft.dwLowDateTime;
     uli.HighPart = ft.dwHighDateTime;
-    // 100-nanosecond intervals since January 1, 1601 (UTC)
-    // تبدیل به میلی‌ثانیه برای زمان فعلی
     ULONGLONG ms = (uli.QuadPart / 10000) % 1000;
     return (int)ms;
 }
@@ -111,20 +104,22 @@ int getMilliseconds() {
 #endif
 
 void printUsage(const char *progName) {
-    printf("Usage: %s [-u] [-f FORMAT] [-t TIMESTAMP] [-I ISO8601] [-i] [-m] [-h]\n", progName);
-    printf("  -u           " COLOR_CYAN "Print time in UTC (default local time)" COLOR_RESET "\n");
-    printf("  -f FORMAT    " COLOR_CYAN "Specify strftime format string (default: \"%s\")" COLOR_RESET "\n", DEFAULT_FORMAT);
-    printf("  -t TIMESTAMP " COLOR_CYAN "Print time for given UNIX timestamp (seconds since epoch)" COLOR_RESET "\n");
-    printf("  -I ISO8601   " COLOR_CYAN "Parse ISO8601 time string (e.g. 2025-06-05T14:30:00Z)" COLOR_RESET "\n");
-    printf("  -i           " COLOR_CYAN "Output time in ISO8601 format" COLOR_RESET "\n");
-    printf("  -m           " COLOR_CYAN "Print milliseconds (only with current time)" COLOR_RESET "\n");
-    printf("  -h, --help   " COLOR_CYAN "Show this help message" COLOR_RESET "\n");
+    printf("Usage: %s [-u] [-f FORMAT] [-t TIMESTAMP] [-I ISO8601] [-i] [-m] [--json] [-h|--help]\n", progName);
+    printf("  -u           " ANSI_BOLD_YELLOW "Print time in UTC (default local time)" COLOR_RESET "\n");
+    printf("  -f FORMAT    " ANSI_BOLD_YELLOW "Specify strftime format string (default: \"%s\")" COLOR_RESET "\n", DEFAULT_FORMAT);
+    printf("  -t TIMESTAMP " ANSI_BOLD_YELLOW "Print time for given UNIX timestamp (seconds since epoch)" COLOR_RESET "\n");
+    printf("  -I ISO8601   " ANSI_BOLD_YELLOW "Parse ISO8601 time string (e.g. 2025-06-05T14:30:00Z)" COLOR_RESET "\n");
+    printf("  -i           " ANSI_BOLD_YELLOW "Output time in ISO8601 format" COLOR_RESET "\n");
+    printf("  -m           " ANSI_BOLD_YELLOW "Print milliseconds (only with current time)" COLOR_RESET "\n");
+    printf("  --json       " ANSI_BOLD_YELLOW "Output result in JSON format" COLOR_RESET "\n");
+    printf("  -h, --help   " ANSI_BOLD_YELLOW "Show this help message" COLOR_RESET "\n");
 }
 
 int main(int argc, char *argv[]) {
     int useUTC = 0;
     int outputISO = 0;
     int printMillis = 0;
+    int outputJSON = 0;
     char format[MAX_FORMAT_LEN] = DEFAULT_FORMAT;
     char timeBuffer[MAX_BUFFER_SIZE];
     time_t customTimeValue = 0;
@@ -168,6 +163,8 @@ int main(int argc, char *argv[]) {
             outputISO = 1;
         } else if (strcmp(argv[i], "-m") == 0) {
             printMillis = 1;
+        } else if (strcmp(argv[i], "--json") == 0) {
+            outputJSON = 1;
         } else if (strcmp(argv[i], "-h") == 0 || strcmp(argv[i], "--help") == 0) {
             printUsage(argv[0]);
             return 0;
@@ -199,11 +196,24 @@ int main(int argc, char *argv[]) {
         }
     }
 
-    if (printMillis && !customTimePtr) {
-        int ms = getMilliseconds();
-        printf(COLOR_GREEN "%s.%03d\n" COLOR_RESET, timeBuffer, ms);
+    if (outputJSON) {
+        int ms = 0;
+        if (printMillis && !customTimePtr) {
+            ms = getMilliseconds();
+        }
+        printf("{\n");
+        printf("  \"time\": \"%s\"", timeBuffer);
+        if (printMillis && !customTimePtr) {
+            printf(",\n  \"milliseconds\": %d", ms);
+        }
+        printf("\n}\n");
     } else {
-        printf(COLOR_GREEN "%s\n" COLOR_RESET, timeBuffer);
+        if (printMillis && !customTimePtr) {
+            int ms = getMilliseconds();
+            printf(COLOR_GREEN "%s.%03d\n" COLOR_RESET, timeBuffer, ms);
+        } else {
+            printf(COLOR_GREEN "%s\n" COLOR_RESET, timeBuffer);
+        }
     }
 
     return 0;
