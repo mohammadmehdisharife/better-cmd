@@ -8,14 +8,14 @@ rmdir /s /q better-cmd
 mkdir %BUILD%
 
 rem --- Compile Nim commands ---
-for %%F in (touch now pwd cat) do (
+for %%F in (touch pwd cat) do (
     echo Compiling Nim command %%F...
     nim c -d:release %SRC%\%%F.nim
     move %SRC%\%%F.exe %BUILD%\
 )
 
 rem --- Compile C commands ---
-for %%F in (ls ll) do (
+for %%F in (ls ll now) do (
     echo Compiling C command %%F...
     gcc -o %BUILD%\%%F.exe %SRC%\%%F.c
 )
