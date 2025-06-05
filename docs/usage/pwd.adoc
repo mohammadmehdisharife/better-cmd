@@ -1,0 +1,146 @@
+= pwd Usage Documentation
+2025-06-05
+
+:toc:
+:toclevels: 3
+:sectnums:
+:icons: font
+:sectanchors:
+
+== Synopsis
+
+[source,bash]
+----
+pwd [options]
+----
+
+Print the current working directory with various output formatting options.
+
+== Options
+
+[cols="1,3", options="header"]
+|===
+|Option | Description
+
+|`-d`
+|Print drive letter only (e.g., `C:`).
+
+|`-b`
+|Print basename only (the last component of the path).
+
+|`-q`
+|Quote the output with double quotes (`"`).
+
+|`-c`
+|Colorize the output in green.
+
+|`-h`
+|Show this help message and exit.
+
+|`-j`
+|Output the path information in JSON format.
+
+|`--json-compact`
+|Produce compact JSON output in a single line.
+
+|`--json-no-quote`
+|Exclude the `"quoted"` field from JSON output.
+
+|`--json-no-components`
+|Exclude the `"components"` array from JSON output.
+
+|`--unix-style`
+|Use forward slashes (`/`) instead of backslashes (`\`) as path separators.
+
+|`--strip-root`
+|Remove the drive letter prefix from the path.
+
+|===
+
+== Description of Options
+
+.**`-d` (Drive Only)**
+  
+  Outputs only the drive portion of the current directory path (e.g., `C:`).
+
+.**`-b` (Basename Only)**
+
+  Outputs only the final path component (the basename) of the current directory.
+
+.**`-q` (Quote Output)**
+
+  Wraps the output in double quotes (`"`). Useful for scripting or when the path contains spaces.
+
+.**`-c` (Color Output)**
+
+  Displays the output in green text using ANSI escape codes, if the terminal supports colors.
+
+.**`-h` (Help)**
+
+  Prints this usage information and exits.
+
+.**`-j` (JSON Output)**
+
+  Outputs detailed path information in JSON format, including path, quoted path, drive, basename, and components.
+
+.**`--json-compact`**
+
+  Produces compact JSON output in a single line rather than pretty-printed multiline format.
+
+.**`--json-no-quote`**
+
+  Omits the `"quoted"` field from the JSON output.
+
+.**`--json-no-components`**
+
+  Omits the `"components"` array from the JSON output.
+
+.**`--unix-style`**
+
+  Replaces backslashes (`\`) with forward slashes (`/`) in the output path.
+
+.**`--strip-root`**
+
+  Removes the drive letter (e.g., `C:`) from the beginning of the output path.
+
+== Examples
+
+[source,bash]
+----
+pwd
+C:\Users\Mohammad
+
+pwd -d
+C:
+
+pwd -b
+Mohammad
+
+pwd -q
+"C:\Users\Mohammad"
+
+pwd -c
+(Output in green color)
+
+pwd -j --json-compact
+{"path":"C:\\Users\\Mohammad","quoted":"\"C:\\Users\\Mohammad\"","drive":"C:","basename":"Mohammad","components":["C:","Users","Mohammad"]}
+
+pwd --unix-style --strip-root
+/Users/Mohammad
+----
+
+== Error Handling
+
+If the current directory cannot be determined, an error message is printed to standard error in red text, and the program exits with status code 1.
+
+[source,bash]
+----
+pwd: failed to get current directory
+----
+
+== Technical Details
+
+- Uses the Windows API function `GetCurrentDirectoryA` to retrieve the current directory path.
+- Supports ANSI color escape sequences for colored output.
+- JSON output provides structured data suitable for consumption by other programs or scripts.
+- The path can be output in Windows-style (`\`) or Unix-style (`/`) separators.
