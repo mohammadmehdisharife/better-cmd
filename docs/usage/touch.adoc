@@ -1,0 +1,93 @@
+= touch Utility Documentation
+2025-06-05
+
+:toc:
+:toclevels: 3
+:sectnums:
+:icons: font
+:sectanchors:
+
+== Synopsis
+
+[source,bash]
+----
+touch [OPTIONS] FILE...
+----
+
+Update the access and/or modification times of each FILE to the current time or to a specified time.
+
+== Options
+
+[cols="1,3", options="header"]
+|===
+|Option | Description
+
+|`-a`
+|Change only the access time.
+
+|`-m`
+|Change only the modification time.
+
+|`-c`
+|Do not create files if they do not exist.
+
+|`-t [[CC]YY]MMDDhhmm[.ss]`
+|Use the specified timestamp instead of the current time.  
+The timestamp format is: optional century and year (`CCYY`), followed by month, day, hour, minute, and optional seconds.
+
+|`--help`
+|Display this help message and exit.
+
+|===
+
+== Option Details
+
+.**`-a` (Change access time only)**  
+Update only the access time of the file, leaving modification time unchanged.
+
+.**`-m` (Change modification time only)**  
+Update only the modification time of the file, leaving access time unchanged.
+
+.**`-c` (Do not create files)**  
+If a file does not exist, do not create it. Skip such files silently with a warning.
+
+.**`-t [[CC]YY]MMDDhhmm[.ss]` (Specify timestamp)**  
+Use the given timestamp instead of the current system time.  
+The format supports:  
+- `[[CC]YY]` century and year (optional)  
+- `MM` month (01-12)  
+- `DD` day (01-31)  
+- `hh` hour (00-23)  
+- `mm` minute (00-59)  
+- Optional `.ss` seconds (00-59)  
+
+Example:  
+- `202306051230.45` means June 5, 2023, 12:30:45  
+- `2306051230` means June 5, 2023, 12:30 (seconds default to 0)
+
+== Usage Examples
+
+[source,bash]
+----
+touch file.txt
+touch -a file.txt
+touch -m file.txt
+touch -c file.txt
+touch -t 202306051230.45 file.txt
+touch -a -t 2306051230 file1.txt file2.txt
+----
+
+== Behavior and Error Reporting
+
+- If the file does not exist and `-c` is not specified, the file is created empty.
+- Errors such as failure to create or update file timestamps are reported in red text to stderr.
+- Returns exit code 0 on success, non-zero if any error occurs.
+
+== Implementation Notes
+
+- On Windows, uses WinAPI functions (`CreateFileA`, `GetFileTime`, `SetFileTime`) to manipulate file times.
+- Supports UTF-8 console output with ANSI color codes.
+- Parses timestamp string with flexible support for century and seconds.
+- Prints success and error messages with color for clarity.
+- Supports multiple files as arguments.
+

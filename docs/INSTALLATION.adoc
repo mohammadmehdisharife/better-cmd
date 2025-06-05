@@ -1,0 +1,108 @@
+= Installation and Uninstallation Guide
+
+== Overview
+
+This document explains how to install and uninstall the software by adding or removing the program's `bin` folder to/from your user PATH environment variable on Windows.
+
+The process is done via two VBScript files:  
+- `install.vbs` — adds the `bin` folder to your PATH  
+- `uninstall.vbs` — removes the `bin` folder from your PATH
+
+After installation, you can run the program’s commands from any Command Prompt or PowerShell window.
+
+== Installation
+
+To install the software, run the installation script:
+
+[source,batch]
+----
+cscript //nologo install.vbs
+----
+
+**What happens:**
+
+- The script detects the `bin` folder located next to the script.  
+- It adds this folder to your user PATH if it is not already present.  
+- Shows a message confirming the successful installation or that the path already exists.
+
+**Important notes:**
+
+- Only your current user’s PATH is modified; system-wide PATH remains unchanged.  
+- Administrator privileges are not required.  
+- You need to restart your command prompt, PowerShell, or log off and log back in for the changes to take effect.  
+- The script does **not** copy or install any files — make sure the `bin` folder and executables exist where expected.
+
+== Uninstallation
+
+To uninstall, run the uninstall script:
+
+[source,batch]
+----
+cscript //nologo uninstall.vbs
+----
+
+**What happens:**
+
+- The script removes the previously added `bin` folder from your user PATH.  
+- Shows a message confirming the removal or indicating if the path was not found.
+
+**Important notes:**
+
+- This only affects your user account’s PATH variable.  
+- After uninstallation, you won’t be able to run the commands globally unless you add the path again or run executables directly.
+
+== Manual PATH Modification
+
+If the VBScript files fail to run (for example, due to system restrictions on running scripts), you can modify the PATH variable manually:
+
+1. **Find the `bin` folder:**  
+   Locate the folder containing the program’s executables (`bin`), typically inside the installation directory.
+
+2. **Add `bin` folder to PATH manually:**  
+   - Open the Start Menu and search for “Environment Variables” and choose “Edit the system environment variables”.  
+   - In the System Properties window, click on “Environment Variables...”.  
+   - Under **User variables**, select the `Path` variable and click **Edit**.  
+   - Click **New** and enter the full absolute path to the `bin` folder.  
+   - Click **OK** to save all dialogs.  
+   - Restart any open terminals or log out and back in to apply changes.
+
+3. **Remove `bin` folder from PATH manually:**  
+   - Repeat the steps above to open the PATH editor.  
+   - Select the entry for the `bin` folder and click **Delete**.  
+   - Save and restart terminals.
+
+== Changing Installation Location
+
+If you want to move the software to a different folder or drive:
+
+- Move or copy the entire folder containing `bin` to the new location.  
+- Remove the old `bin` path from your PATH (using uninstall script or manually).  
+- Add the new `bin` path to your PATH (using install script or manually).  
+- Restart your terminal or log off and back on.
+
+**Note:** The VBScript scripts expect the `bin` folder to be next to them. If you move folders, running existing scripts will not correctly update the PATH.
+
+== Troubleshooting & Tips
+
+- **No admin rights needed:** The scripts modify only your user PATH, no administrator privileges are required.  
+- **Script execution blocked:** If `.vbs` scripts do not run, check if Windows Script Host is enabled or run scripts as Administrator.  
+- **Commands not recognized:**  
+  - Restart your terminal after installing.  
+  - Check the PATH variable with `echo %PATH%`.  
+  - Confirm executables exist in the `bin` folder.  
+- **Multiple versions:** Be careful if you have multiple installs; PATH order affects which version runs.  
+- **Run scripts in PowerShell:**  
+  Use the same command:  
+  `cscript //nologo install.vbs`  
+- **Editing scripts:** You can customize paths or behavior by editing the `.vbs` files if needed.
+
+== Summary Table
+
+| Task                   | Command                       | Description                       |
+|------------------------|------------------------------|---------------------------------|
+| Install                | `cscript //nologo install.vbs`  | Add `bin` to user PATH          |
+| Uninstall              | `cscript //nologo uninstall.vbs`| Remove `bin` from user PATH     |
+| Manual Add to PATH     | Environment Variables GUI     | Add `bin` folder manually       |
+| Manual Remove from PATH| Environment Variables GUI     | Remove `bin` folder manually    |
+
+For more help, please consult your system administrator or Windows documentation on environment variables.
