@@ -98,11 +98,24 @@ If you want to move the software to a different folder or drive:
 
 == Summary Table
 
-| Task                   | Command                       | Description                       |
-|------------------------|------------------------------|---------------------------------|
-| Install                | `cscript //nologo install.vbs`  | Add `bin` to user PATH          |
-| Uninstall              | `cscript //nologo uninstall.vbs`| Remove `bin` from user PATH     |
-| Manual Add to PATH     | Environment Variables GUI     | Add `bin` folder manually       |
-| Manual Remove from PATH| Environment Variables GUI     | Remove `bin` folder manually    |
+|===
+| Task                   | Command                       | Description                       
+
+| Install                
+| `cscript //nologo install.vbs`  
+| Add `bin` to user PATH         
+
+| Uninstall              
+| `cscript //nologo uninstall.vbs`
+| Remove `bin` from user PATH     
+
+| Manual Add to PATH     
+| Environment Variables GUI     
+| Add `bin` folder manually       
+
+| Manual Remove from PATH
+| Environment Variables GUI     
+| Remove `bin` folder manually    
+|===
 
 For more help, please consult your system administrator or Windows documentation on environment variables.
