@@ -17,6 +17,13 @@ if exist "better-cmd" (
         exit /b 1
     )
 )
+if exist better-cmd.zip (
+    del /f /q better-cmd.zip
+    if errorlevel 1 (
+        echo [!] Failed to delete existing better-cmd.zip file.
+        exit /b 1
+    )
+)
 
 rem === Create build directory ===
 mkdir "%BUILD%"
@@ -38,7 +45,6 @@ for %%F in (%COMMANDS%) do (
 
 rem === Copy VBS install/uninstall files ===
 echo [*] Copying install/uninstall scripts...
-rem Make sure the target directory exists
 if not exist "better-cmd" mkdir "better-cmd"
 for %%F in (%VBS%) do (
     copy "%VBS_SRC%\%%F" "better-cmd\" >nul
@@ -57,8 +63,9 @@ if errorlevel 1 (
     tar -a -c -f better-cmd.zip better-cmd
     if errorlevel 1 (
         echo [!] Failed to create archive with tar.
+        exit /b 1
     )
 )
 
-echo [✓] Build complete.
+echo [#] Build complete.
 exit /b 0
