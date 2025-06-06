@@ -54,6 +54,19 @@ for %%F in (%VBS%) do (
     )
 )
 
+rem === Copy INSTALLATION.adoc from docs ===
+echo [*] Copying INSTALLATION.adoc...
+if exist docs\INSTALLATION.adoc (
+    copy docs\INSTALLATION.adoc "better-cmd\" /Y >nul
+    if errorlevel 1 (
+        echo [!] Failed to copy INSTALLATION.adoc
+        exit /b 1
+    )
+) else (
+    echo [!] docs\INSTALLATION.adoc not found!
+    exit /b 1
+)
+
 rem === Create ZIP archive using tar ===
 echo [*] Creating archive better-cmd.zip using tar...
 where tar >nul 2>&1
