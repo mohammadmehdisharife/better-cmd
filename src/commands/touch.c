@@ -33,10 +33,7 @@ void printUsage() {
         ANSI_RESET);
 }
 
-// تبدیل رشته زمان به SYSTEMTIME
-// فرمت: [[CC]YY]MMDDhhmm[.ss]
 int parseTime(const char* str, SYSTEMTIME* st) {
-    // مقداردهی پیش‌فرض به زمان فعلی
     GetSystemTime(st);
 
     int len = (int)strlen(str);
@@ -46,58 +43,43 @@ int parseTime(const char* str, SYSTEMTIME* st) {
     char buf[5];
     memset(st, 0, sizeof(SYSTEMTIME));
 
-    // اگر طول بیشتر باشه، ممکن CC یا YY باشه
     if (len == 12 || len == 10 || len == 8 || len == 15) {
-        // حالت‌های مختلف را پشتیبانی می‌کنیم
-        // برای سادگی، الان فقط پشتیبانی از YYMMDDhhmm.ss هست
-        // می‌تونید این بخش رو گسترش بدید
-        // اینجا فقط نمونه ساده از خواندن MMDDhhmm را می‌زنیم
-
-        // اگر طول 15 باشد (CCYYMMDDhhmm.ss)
         if (len == 15) {
-            // CCYY
             strncpy(buf, str, 4);
             buf[4] = 0;
             int year = atoi(buf);
             st->wYear = year;
             pos = 4;
         } else if (len == 12) {
-            // YYMMDDhhmm.ss
             strncpy(buf, str, 2);
             buf[2] = 0;
             int year = atoi(buf);
             st->wYear = year + 2000;
             pos = 2;
         } else {
-            // فقط MMDDhhmm
-            st->wYear = 2023; // پیش فرض
+            st->wYear = 2023;
         }
 
-        // MM
         strncpy(buf, str + pos, 2);
         buf[2] = 0;
         st->wMonth = atoi(buf);
         pos += 2;
 
-        // DD
         strncpy(buf, str + pos, 2);
         buf[2] = 0;
         st->wDay = atoi(buf);
         pos += 2;
 
-        // hh
         strncpy(buf, str + pos, 2);
         buf[2] = 0;
         st->wHour = atoi(buf);
         pos += 2;
 
-        // mm
         strncpy(buf, str + pos, 2);
         buf[2] = 0;
         st->wMinute = atoi(buf);
         pos += 2;
 
-        // .ss
         if (pos + 3 <= len && str[pos] == '.') {
             strncpy(buf, str + pos + 1, 2);
             buf[2] = 0;
@@ -152,7 +134,6 @@ int touchFile(const char* filename, int changeAccess, int changeModify, int noCr
         if (changeAccess) ftNewAccess = ftCustom;
         if (changeModify) ftNewModify = ftCustom;
     } else {
-        // زمان فعلی سیستم
         SYSTEMTIME stNow;
         FILETIME ftNow;
         GetSystemTime(&stNow);
