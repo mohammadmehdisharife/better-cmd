@@ -11,11 +11,6 @@ typedef struct
     DWORD attr;
 } FileEntry;
 
-void setConsoleUTF8()
-{
-    SetConsoleOutputCP(CP_UTF8);
-}
-
 int getTerminalWidth()
 {
     CONSOLE_SCREEN_BUFFER_INFO csbi;
@@ -28,7 +23,7 @@ int getTerminalWidth()
 
 int main(int argc, char *argv[])
 {
-    setConsoleUTF8();
+    SetConsoleOutputCP(CP_UTF8);
 
     int showHidden = 0;
     for (int i = 1; i < argc; i++)
