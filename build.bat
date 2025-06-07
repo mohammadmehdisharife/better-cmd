@@ -54,16 +54,16 @@ for %%F in (%VBS%) do (
     )
 )
 
-rem === Copy INSTALLATION.adoc from docs ===
-echo [*] Copying INSTALLATION.adoc...
-if exist docs\INSTALLATION.adoc (
-    copy docs\INSTALLATION.adoc "better-cmd\" /Y >nul
+rem === Copy INSTALLATION.html from docs ===
+echo [*] Copying INSTALLATION.html...
+if exist docs\INSTALLATION.html (
+    copy docs\INSTALLATION.html "better-cmd\" /Y >nul
     if errorlevel 1 (
-        echo [!] Failed to copy INSTALLATION.adoc
+        echo [!] Failed to copy INSTALLATION.html
         exit /b 1
     )
 ) else (
-    echo [!] docs\INSTALLATION.adoc not found!
+    echo [!] docs\INSTALLATION.html not found!
     exit /b 1
 )
 

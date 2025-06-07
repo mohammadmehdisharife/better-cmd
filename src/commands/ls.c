@@ -251,6 +251,9 @@ int main(int argc, char *argv[])
         }
         else if (ext && (strcmp(ext, ".sh") == 0 ||
                          strcmp(ext, ".bash") == 0 ||
+                         strcmp(ext, ".bat") == 0 ||
+                         strcmp(ext, ".cmd") == 0 ||
+                         strcmp(ext, ".ps1") == 0 ||
                          strcmp(ext, ".zsh") == 0 ||
                          strcmp(ext, ".py") == 0 ||
                          strcmp(ext, ".pl") == 0 ||
