@@ -77,7 +77,7 @@ int main()
         const char *color = (files[i].attr & FILE_ATTRIBUTE_DIRECTORY) ? "\033[1;33m" : "\033[1;37m";
         const char *ext = strrchr(files[i].name, '.');
         const char *symbol;
-        
+
         if (files[i].attr & FILE_ATTRIBUTE_DIRECTORY)
         {
             symbol = "📁";
@@ -94,7 +94,14 @@ int main()
                          strcmp(ext, ".scr") == 0 ||
                          strcmp(ext, ".msc") == 0))
         {
-            symbol = "⚙️";
+            if (getenv("VSCODE_PID") || (getenv("TERM_PROGRAM") && strcmp(getenv("TERM_PROGRAM"), "vscode") == 0))
+            {
+                symbol = "⚙️ ";
+            }
+            else
+            {
+                symbol = "⚙️";
+            }
         }
         else if (ext && (strcmp(ext, ".zip") == 0 ||
                          strcmp(ext, ".rar") == 0 ||
@@ -141,7 +148,14 @@ int main()
                          strcmp(ext, ".fits") == 0 ||
                          strcmp(ext, ".svgz") == 0))
         {
-            symbol = "🖼️";
+            if (getenv("VSCODE_PID") || (getenv("TERM_PROGRAM") && strcmp(getenv("TERM_PROGRAM"), "vscode") == 0))
+            {
+                symbol = "🖼️ ";
+            }
+            else
+            {
+                symbol = "🖼️";
+            }
         }
         else if (ext && (strcmp(ext, ".mp3") == 0 ||
                          strcmp(ext, ".wav") == 0 ||
@@ -174,7 +188,7 @@ int main()
                          strcmp(ext, ".au") == 0 ||
                          strcmp(ext, ".aif") == 0))
         {
-            symbol = "🎵";
+            symbol = "🎧";
         }
 
         else

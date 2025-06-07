@@ -98,7 +98,14 @@ int main(int argc, char *argv[])
                          strcmp(ext, ".scr") == 0 ||
                          strcmp(ext, ".msc") == 0))
         {
-            symbol = "⚙️";
+            if (getenv("VSCODE_PID") || (getenv("TERM_PROGRAM") && strcmp(getenv("TERM_PROGRAM"), "vscode") == 0))
+            {
+                symbol = "⚙️ ";
+            }
+            else
+            {
+                symbol = "⚙️";
+            }
         }
         else if (ext && (strcmp(ext, ".zip") == 0 ||
                          strcmp(ext, ".rar") == 0 ||
@@ -145,7 +152,14 @@ int main(int argc, char *argv[])
                          strcmp(ext, ".fits") == 0 ||
                          strcmp(ext, ".svgz") == 0))
         {
-            symbol = "🖼️";
+            if (getenv("VSCODE_PID") || (getenv("TERM_PROGRAM") && strcmp(getenv("TERM_PROGRAM"), "vscode") == 0))
+            {
+                symbol = "🖼️ ";
+            }
+            else
+            {
+                symbol = "🖼️";
+            }
         }
         else if (ext && (strcmp(ext, ".mp3") == 0 ||
                          strcmp(ext, ".wav") == 0 ||
@@ -178,7 +192,7 @@ int main(int argc, char *argv[])
                          strcmp(ext, ".au") == 0 ||
                          strcmp(ext, ".aif") == 0))
         {
-            symbol = "🎵";
+            symbol = "🎧";
         }
 
         else
