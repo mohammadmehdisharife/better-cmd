@@ -109,7 +109,15 @@ int main()
                          strcmp(ext, ".tar") == 0 ||
                          strcmp(ext, ".gz") == 0 ||
                          strcmp(ext, ".bz2") == 0 ||
-                         strcmp(ext, ".xz") == 0))
+                         strcmp(ext, ".xz") == 0 ||
+                         strcmp(ext, ".lz") == 0 ||
+                         strcmp(ext, ".lzma") == 0 ||
+                         strcmp(ext, ".iso") == 0 ||
+                         strcmp(ext, ".cab") == 0 ||
+                         strcmp(ext, ".arj") == 0 ||
+                         strcmp(ext, ".tgz") == 0 ||
+                         strcmp(ext, ".tbz2") == 0 ||
+                         strcmp(ext, ".txz") == 0))
         {
             symbol = "📦";
         }
