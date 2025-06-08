@@ -5,7 +5,7 @@ rem === Configuration ===
 set "SRC=src\commands"
 set "BUILD=better-cmd\bin"
 set "VBS_SRC=src\scripts"
-set "COMMANDS=ls ll now cat pwd touch clear"
+set "COMMANDS=ls ll now cat pwd touch clear stat head tail basename dirname"
 set "VBS=install.vbs uninstall.vbs"
 
 rem === Cleanup ===
