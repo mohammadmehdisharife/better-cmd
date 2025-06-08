@@ -8,7 +8,7 @@ int main(void)
     DWORD consoleSize;
     COORD home = {0, 0};
 
-    if (!GetConsoleScreenBufferInfo(hConsole, &csbi)) return 1;
+    if (!GetConsoleScreenBufferInfo(hConsole, &csbi)) return 0;
 
     consoleSize = csbi.dwSize.X * csbi.dwSize.Y;
 

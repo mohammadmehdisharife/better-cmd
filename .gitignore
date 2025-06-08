@@ -1,2 +1,15 @@
 bettercmd
 bettercmd.zip
+
+tests/ls/ls.exe
+tests/ll/ll.exe
+tests/now/now.exe
+tests/cat/cat.exe
+tests/pwd/pwd.exe
+tests/touch/touch.exe
+tests/clear/clear.exe
+tests/stat/stat.exe
+tests/head/head.exe
+tests/tail/tail.exe
+tests/basename/basename.exe
+tests/dirname/dirname.exe
