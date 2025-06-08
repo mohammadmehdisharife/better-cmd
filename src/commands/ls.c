@@ -114,14 +114,8 @@ int main(int argc, char *argv[])
                          strcmp(ext, ".tbz2") == 0 ||
                          strcmp(ext, ".txz") == 0))
         {
-            if (getenv("VSCODE_PID") || (getenv("TERM_PROGRAM") && strcmp(getenv("TERM_PROGRAM"), "vscode") == 0))
-            {
-                symbol = "🗃️ ";
-            }
-            else
-            {
-                symbol = "🗃️";
-            }
+
+            symbol = "🧰";
         }
         else if (ext && (strcmp(ext, ".lnk") == 0 ||
                          strcmp(ext, ".url") == 0))
