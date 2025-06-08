@@ -1,48 +1,51 @@
 #include <stdio.h>
 #include <string.h>
-#include <libgen.h>
+#include <stdlib.h>
+#include "../libs/ansi_colors.h"
 
-#define COLOR_BOLD_RED  "\x1b[1;31m"
-#define COLOR_YELLOW    "\x1b[1;33m"
-#define COLOR_RESET     "\x1b[0m"
-
-void printHelp() {
-    printf(COLOR_YELLOW
-        "Usage: dirname [path]\n"
-        "\n"
-        "Print the directory part of a given path.\n"
-        "Examples:\n"
-        "  dirname /usr/bin/ls     # /usr/bin\n"
-        "  dirname ./src/main.c    # ./src\n"
-        "\n"
-        "Options:\n"
-        "  -h, --help              Show this help message\n"
-        COLOR_RESET);
-}
-
-void printUsage() {
-    fprintf(stderr, COLOR_BOLD_RED
-        "Usage: dirname [path]\n"
-        "Try 'dirname -h' for more information.\n"
-        COLOR_RESET);
-}
+#ifdef _WIN32
+#define PATH_SEP '\\'
+#else
+#define PATH_SEP '/'
+#endif
 
 int main(int argc, char *argv[]) {
-    if (argc == 2) {
-        if (strcmp(argv[1], "-h") == 0 || strcmp(argv[1], "--help") == 0) {
-            printHelp();
-            return 0;
-        }
+    if (argc != 2) {
+        fprintf(stderr, ANSI_BOLD_WHITE "dirname: missing operand\n" ANSI_RESET);
+        return 1;
+    }
 
-        char pathCopy[1024];
-        strncpy(pathCopy, argv[1], sizeof(pathCopy) - 1);
-        pathCopy[sizeof(pathCopy) - 1] = '\0';
+    char *path = argv[1];
+    size_t len = strlen(path);
 
-        printf("%s\n", dirname(pathCopy));
+    if (len == 0) {
+        printf(ANSI_BOLD_WHITE ".\n" ANSI_RESET);
         return 0;
     }
 
-    fprintf(stderr, COLOR_BOLD_RED "dirname: missing path operand\n" COLOR_RESET);
-    printUsage();
-    return 1;
+    char *copy = malloc(len + 1);
+    if (!copy) {
+        fprintf(stderr, ANSI_BOLD_WHITE "dirname: memory error\n" ANSI_RESET);
+        return 1;
+    }
+    strcpy(copy, path);
+
+    while (len > 1 && (copy[len - 1] == PATH_SEP || copy[len - 1] == '/')) {
+        copy[len - 1] = '\0';
+        len--;
+    }
+
+    char *last_sep = strrchr(copy, PATH_SEP);
+    if (!last_sep) {
+        printf(ANSI_BOLD_WHITE ".\n" ANSI_RESET);
+    } else if (last_sep == copy) {
+        copy[1] = '\0';
+        printf(ANSI_BOLD_WHITE "%s\n" ANSI_RESET, copy);
+    } else {
+        *last_sep = '\0';
+        printf(ANSI_BOLD_WHITE "%s\n" ANSI_RESET, copy);
+    }
+
+    free(copy);
+    return 0;
 }

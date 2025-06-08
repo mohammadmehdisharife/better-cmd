@@ -3,11 +3,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <io.h>
-
-#define ANSI_BOLD_RED    "\x1b[1;31m"
-#define ANSI_BOLD_GREEN  "\x1b[1;32m"
-#define ANSI_BOLD_YELLOW "\x1b[1;33m"
-#define ANSI_RESET       "\x1b[0m"
+#include "../libs/ansi_colors.h"
 
 void setConsoleUTF8() {
     SetConsoleOutputCP(CP_UTF8);
@@ -18,23 +14,19 @@ void setConsoleUTF8() {
     }
 }
 
-void printHelp() {
-    printf(ANSI_BOLD_YELLOW
-        "Usage: touch [file...]\n"
-        "\n"
-        "Create each file if it does not exist.\n"
-        "Update the access and modification times to the current time.\n"
-        "\n"
-        "Options:\n"
-        "  -h, --help      Show this help message.\n"
-        ANSI_RESET);
-}
-
-int touchFile(const char* filename) {
+int touchFile(const char *filename) {
     int exists = (_access(filename, 0) == 0);
 
     if (!exists) {
-        HANDLE hNew = CreateFileA(filename, GENERIC_WRITE, 0, NULL, CREATE_NEW, FILE_ATTRIBUTE_NORMAL, NULL);
+        HANDLE hNew = CreateFileA(
+            filename,
+            GENERIC_WRITE,
+            0,
+            NULL,
+            CREATE_NEW,
+            FILE_ATTRIBUTE_NORMAL,
+            NULL
+        );
         if (hNew == INVALID_HANDLE_VALUE) {
             printf(ANSI_BOLD_RED "Error creating file: %s\n" ANSI_RESET, filename);
             return 1;
@@ -42,7 +34,15 @@ int touchFile(const char* filename) {
         CloseHandle(hNew);
     }
 
-    HANDLE hFile = CreateFileA(filename, FILE_WRITE_ATTRIBUTES, 0, NULL, OPEN_EXISTING, 0, NULL);
+    HANDLE hFile = CreateFileA(
+        filename,
+        FILE_WRITE_ATTRIBUTES,
+        0,
+        NULL,
+        OPEN_EXISTING,
+        0,
+        NULL
+    );
     if (hFile == INVALID_HANDLE_VALUE) {
         printf(ANSI_BOLD_RED "Error opening file to update timestamp: %s\n" ANSI_RESET, filename);
         return 1;
@@ -64,17 +64,16 @@ int touchFile(const char* filename) {
     return 0;
 }
 
-int main(int argc, char* argv[]) {
+int main(int argc, char *argv[]) {
     setConsoleUTF8();
 
     if (argc < 2) {
         printf(ANSI_BOLD_RED "touch: missing file operand\n" ANSI_RESET);
-        printHelp();
         return 1;
     }
 
-    if (strcmp(argv[1], "-h") == 0 || strcmp(argv[1], "--help") == 0) {
-        printHelp();
+    if (strcmp(argv[1], "-v") == 0 || strcmp(argv[1], "--version") == 0) {
+        system("bettercmd -v");
         return 0;
     }
 
