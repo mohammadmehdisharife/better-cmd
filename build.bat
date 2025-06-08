@@ -3,24 +3,24 @@ setlocal enabledelayedexpansion
 
 rem === Configuration ===
 set "SRC=src\commands"
-set "BUILD=better-cmd\bin"
+set "BUILD=bettercmd\bin"
 set "VBS_SRC=src\scripts"
-set "COMMANDS=ls ll now cat pwd touch clear stat head tail basename dirname"
+set "COMMANDS=ls ll now cat pwd touch clear stat head tail basename dirname bettercmd"
 set "VBS=install.vbs uninstall.vbs"
 
 rem === Cleanup ===
 echo [*] Cleaning previous build...
-if exist "better-cmd" (
-    rmdir /s /q "better-cmd"
+if exist "bettercmd" (
+    rmdir /s /q "bettercmd"
     if errorlevel 1 (
-        echo [!] Failed to delete existing better-cmd directory.
+        echo [!] Failed to delete existing bettercmd directory.
         exit /b 1
     )
 )
-if exist better-cmd.zip (
-    del /f /q better-cmd.zip
+if exist bettercmd.zip (
+    del /f /q bettercmd.zip
     if errorlevel 1 (
-        echo [!] Failed to delete existing better-cmd.zip file.
+        echo [!] Failed to delete existing bettercmd.zip file.
         exit /b 1
     )
 )
@@ -45,9 +45,9 @@ for %%F in (%COMMANDS%) do (
 
 rem === Copy VBS install/uninstall files ===
 echo [*] Copying install/uninstall scripts...
-if not exist "better-cmd" mkdir "better-cmd"
+if not exist "bettercmd" mkdir "bettercmd"
 for %%F in (%VBS%) do (
-    copy "%VBS_SRC%\%%F" "better-cmd\" >nul
+    copy "%VBS_SRC%\%%F" "bettercmd\" >nul
     if errorlevel 1 (
         echo [!] Failed to copy %%F from %VBS_SRC%
         exit /b 1
@@ -57,7 +57,7 @@ for %%F in (%VBS%) do (
 rem === Copy INSTALLATION.html from docs ===
 echo [*] Copying INSTALLATION.html...
 if exist docs\INSTALLATION.html (
-    copy docs\INSTALLATION.html "better-cmd\" /Y >nul
+    copy docs\INSTALLATION.html "bettercmd\" /Y >nul
     if errorlevel 1 (
         echo [!] Failed to copy INSTALLATION.html
         exit /b 1
@@ -68,12 +68,12 @@ if exist docs\INSTALLATION.html (
 )
 
 rem === Create ZIP archive using tar ===
-echo [*] Creating archive better-cmd.zip using tar...
+echo [*] Creating archive bettercmd.zip using tar...
 where tar >nul 2>&1
 if errorlevel 1 (
     echo [!] tar command not found, skipping archive creation.
 ) else (
-    tar -a -c -f better-cmd.zip better-cmd
+    tar -a -c -f bettercmd.zip bettercmd
     if errorlevel 1 (
         echo [!] Failed to create archive with tar.
         exit /b 1

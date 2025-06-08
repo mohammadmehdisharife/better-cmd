@@ -71,7 +71,7 @@ int main(int argc, char *argv[]) {
 
     printf("\n");
 
-    printField("File", argv[1]);
+    printField("Name", argv[1]);
     
     char sizeStr[32];
     snprintf(sizeStr, sizeof(sizeStr), "%lld bytes", size.QuadPart);
