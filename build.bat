@@ -80,5 +80,6 @@ if errorlevel 1 (
     )
 )
 
-echo [#] Build complete.
+echo -----------------------------------------
+echo [✓] Build complete.
 exit /b 0
