@@ -67,6 +67,19 @@ if exist docs\INSTALLATION.html (
     exit /b 1
 )
 
+rem === Copy version.info from docs ===
+echo [*] Copying version.info...
+if exist docs\version.info (
+    copy docs\version.info "bettercmd\" /Y >nul
+    if errorlevel 1 (
+        echo [!] Failed to copy version.info
+        exit /b 1
+    )
+) else (
+    echo [!] docs\version.info not found!
+    exit /b 1
+)
+
 rem === Create ZIP archive using tar ===
 echo [*] Creating archive bettercmd.zip using tar...
 where tar >nul 2>&1
