@@ -33,6 +33,11 @@ void printField(const char *label, const char *value) {
 }
 
 int main(int argc, char *argv[]) {
+    if (argc != 2) {
+        fprintf(stderr, ANSI_BOLD_RED "Usage: %s <file_name>\n" ANSI_RESET, argv[0]);
+        return 1;
+    }
+    
     setConsoleUTF8();
 
     WIN32_FILE_ATTRIBUTE_DATA data;

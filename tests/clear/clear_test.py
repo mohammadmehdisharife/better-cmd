@@ -19,7 +19,7 @@ def test_clear_windows():
         assert output == "", "clear.exe should produce no stdout output"
         assert error == "", "clear.exe should produce no stderr output"
 
-        print("[✓] clear.exe test passed successfully.")
+        print("[✓] clear.exe test passed")
 
     except AssertionError as e:
         passed = False
