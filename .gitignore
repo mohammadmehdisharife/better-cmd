@@ -13,3 +13,4 @@ tests/head/head.exe
 tests/tail/tail.exe
 tests/basename/basename.exe
 tests/dirname/dirname.exe
+tests/sleep/sleep.exe
