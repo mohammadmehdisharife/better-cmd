@@ -5,7 +5,7 @@ rem === Configuration ===
 set "SRC=src\commands"
 set "BUILD=bettercmd\bin"
 set "VBS_SRC=src\scripts"
-set "COMMANDS=ls ll now cat pwd touch clear stat head tail basename dirname sleep wc randnum randword"
+set "COMMANDS=ls ll now cat pwd touch clear stat head tail basename dirname sleep wc randnum randword uptime"
 set "VBS=install.vbs uninstall.vbs"
 
 rem === Cleanup ===
@@ -94,5 +94,5 @@ if errorlevel 1 (
 )
 
 echo -----------------------------------------
-echo [✓] Build complete.
+echo [#] Build complete.
 exit /b 0
