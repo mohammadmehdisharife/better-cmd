@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <time.h>
+#include <windows.h>
 #include "../libs/ansi_colors.h"
 
 int main(int argc, char *argv[])
@@ -15,7 +15,7 @@ int main(int argc, char *argv[])
     {
         max = 100;
     }
-    else if (argc == 2)
+    else
     {
         max = atoi(argv[1]);
         if (max <= 0)
@@ -25,7 +25,9 @@ int main(int argc, char *argv[])
         }
     }
 
-    srand((unsigned int)time(NULL));
+    LARGE_INTEGER counter;
+    QueryPerformanceCounter(&counter);
+    srand((unsigned int)(counter.QuadPart ^ (counter.QuadPart >> 32)));
 
     int num = rand() % (max + 1);
     printf("%d\n", num);
