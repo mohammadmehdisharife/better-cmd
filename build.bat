@@ -5,7 +5,7 @@ rem === Configuration ===
 set "SRC=src\commands"
 set "BUILD=bettercmd\bin"
 set "VBS_SRC=src\scripts"
-set "COMMANDS=ls ll now cat pwd touch clear stat head tail basename dirname sleep wc randnum randword uptime uniq env pure"
+set "COMMANDS=ls ll now cat pwd touch clear stat head tail basename dirname sleep wc randnum randword uptime uniq env pure man"
 set "VBS=install.vbs uninstall.vbs"
 
 rem === Cleanup ===
@@ -62,6 +62,13 @@ for %%F in (docs\*.*) do (
         echo [!] Failed to copy %%~nxF
         exit /b 1
     )
+)
+
+echo [*] Copying man pages
+xcopy ".\man" ".\bettercmd\man" /E /I /H /C /Y >nul
+if %ERRORLEVEL% NEQ 0 (
+    echo [!] Failed Copy man page.
+    exit /b 1
 )
 
 rem === Create ZIP archive using tar ===
