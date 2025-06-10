@@ -1,160 +1,266 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Installation and Uninstallation Guide</title>
-  <style>
-    body { font-family: sans-serif; line-height: 1.6; padding: 2rem; max-width: 800px; margin: auto; }
-    code, pre { background-color: #f4f4f4; padding: 0.2em 0.4em; border-radius: 4px; }
-    pre { padding: 1em; overflow-x: auto; }
-    table { border-collapse: collapse; width: 100%; margin-top: 1em; }
-    th, td { border: 1px solid #ccc; padding: 0.5em; text-align: left; }
-    h1, h2 { color: #333; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Better-cmd Installation Guide</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        
+        h1, h2 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        
+        h1 {
+            text-align: center;
+        }
+        
+        .note-box {
+            background-color: #e7f4ff;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .warning-box {
+            background-color: #fff3e0;
+            border-left: 4px solid #ff9800;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        code, pre {
+            background-color: #f0f0f0;
+            padding: 0.2em 0.4em;
+            border-radius: 4px;
+            font-family: 'Consolas', monospace;
+        }
+        
+        pre {
+            padding: 1em;
+            overflow-x: auto;
+            background-color: #f8f8f2;
+            color: #2d2d2d;
+            border-radius: 6px;
+        }
+        
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 20px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        th {
+            background-color: #3498db;
+            color: white;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        td {
+            padding: 10px 12px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        
+        tr:hover {
+            background-color: #e6f7ff;
+        }
+        
+        ul, ol {
+            padding-left: 20px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+        }
+        
+        .command {
+            font-weight: bold;
+            color: #e74c3c;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+        
+        .step {
+            margin-bottom: 30px;
+        }
+        
+        .step-title {
+            font-weight: bold;
+            color: #3498db;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+    </style>
 </head>
 <body>
-
-<h1>Installation and Uninstallation Guide</h1>
-
-<h2>Overview</h2>
-<p>This document explains how to install and uninstall the software by adding or removing the program's <code>bin</code> folder to/from your user PATH environment variable on Windows.</p>
-
-<p>The process is done via two VBScript files:<br>
-- <code>install.vbs</code> — adds the <code>bin</code> folder to your PATH<br>
-- <code>uninstall.vbs</code> — removes the <code>bin</code> folder from your PATH</p>
-
-<p>After installation, you can run the program’s commands from any Command Prompt or PowerShell window.</p>
-
-<h2>Installation</h2>
-
-<p>To install the software, run the installation script:</p>
-
-<pre><code>cscript //nologo install.vbs</code></pre>
-
-<p><strong>What happens:</strong></p>
-<ul>
-  <li>The script detects the <code>bin</code> folder located next to the script.</li>
-  <li>It adds this folder to your user PATH if it is not already present.</li>
-  <li>Shows a message confirming the successful installation or that the path already exists.</li>
-</ul>
-
-<p><strong>Important notes:</strong></p>
-<ul>
-  <li>Only your current user’s PATH is modified; system-wide PATH remains unchanged.</li>
-  <li>Administrator privileges are not required.</li>
-  <li>You need to restart your command prompt, PowerShell, or log off and log back in for the changes to take effect.</li>
-  <li>The script does <strong>not</strong> copy or install any files — make sure the <code>bin</code> folder and executables exist where expected.</li>
-</ul>
-
-<h2>Uninstallation</h2>
-
-<p>To uninstall, run the uninstall script:</p>
-
-<pre><code>cscript //nologo uninstall.vbs</code></pre>
-
-<p><strong>What happens:</strong></p>
-<ul>
-  <li>The script removes the previously added <code>bin</code> folder from your user PATH.</li>
-  <li>Shows a message confirming the removal or indicating if the path was not found.</li>
-</ul>
-
-<p><strong>Important notes:</strong></p>
-<ul>
-  <li>This only affects your user account’s PATH variable.</li>
-  <li>After uninstallation, you won’t be able to run the commands globally unless you add the path again or run executables directly.</li>
-</ul>
-
-<h2>Manual PATH Modification</h2>
-
-<p>If the VBScript files fail to run (for example, due to system restrictions on running scripts), you can modify the PATH variable manually:</p>
-
-<ol>
-  <li><strong>Find the <code>bin</code> folder:</strong><br>
-      Locate the folder containing the program’s executables (<code>bin</code>), typically inside the installation directory.
-  </li>
-  <li><strong>Add <code>bin</code> folder to PATH manually:</strong>
-    <ul>
-      <li>Open the Start Menu and search for “Environment Variables” and choose “Edit the system environment variables”.</li>
-      <li>In the System Properties window, click on “Environment Variables...”.</li>
-      <li>Under <strong>User variables</strong>, select the <code>Path</code> variable and click <strong>Edit</strong>.</li>
-      <li>Click <strong>New</strong> and enter the full absolute path to the <code>bin</code> folder.</li>
-      <li>Click <strong>OK</strong> to save all dialogs.</li>
-      <li>Restart any open terminals or log out and back in to apply changes.</li>
-    </ul>
-  </li>
-  <li><strong>Remove <code>bin</code> folder from PATH manually:</strong>
-    <ul>
-      <li>Repeat the steps above to open the PATH editor.</li>
-      <li>Select the entry for the <code>bin</code> folder and click <strong>Delete</strong>.</li>
-      <li>Save and restart terminals.</li>
-    </ul>
-  </li>
-</ol>
-
-<h2>Changing Installation Location</h2>
-
-<p>If you want to move the software to a different folder or drive:</p>
-<ul>
-  <li>Move or copy the entire folder containing <code>bin</code> to the new location.</li>
-  <li>Remove the old <code>bin</code> path from your PATH (using uninstall script or manually).</li>
-  <li>Add the new <code>bin</code> path to your PATH (using install script or manually).</li>
-  <li>Restart your terminal or log off and back on.</li>
-</ul>
-
-<p><strong>Note:</strong> The VBScript scripts expect the <code>bin</code> folder to be next to them. If you move folders, running existing scripts will not correctly update the PATH.</p>
-
-<h2>Troubleshooting & Tips</h2>
-
-<ul>
-  <li><strong>No admin rights needed:</strong> The scripts modify only your user PATH, no administrator privileges are required.</li>
-  <li><strong>Script execution blocked:</strong> If <code>.vbs</code> scripts do not run, check if Windows Script Host is enabled or run scripts as Administrator.</li>
-  <li><strong>Commands not recognized:</strong>
-    <ul>
-      <li>Restart your terminal after installing.</li>
-      <li>Check the PATH variable with <code>echo %PATH%</code>.</li>
-      <li>Confirm executables exist in the <code>bin</code> folder.</li>
-    </ul>
-  </li>
-  <li><strong>Multiple versions:</strong> Be careful if you have multiple installs; PATH order affects which version runs.</li>
-  <li><strong>Run scripts in PowerShell:</strong> Use the same command:<br><code>cscript //nologo install.vbs</code></li>
-  <li><strong>Editing scripts:</strong> You can customize paths or behavior by editing the <code>.vbs</code> files if needed.</li>
-</ul>
-
-<h2>Summary Table</h2>
-
-<table>
-  <thead>
-    <tr>
-      <th>Task</th>
-      <th>Command</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Install</td>
-      <td><code>cscript //nologo install.vbs</code></td>
-      <td>Add <code>bin</code> to user PATH</td>
-    </tr>
-    <tr>
-      <td>Uninstall</td>
-      <td><code>cscript //nologo uninstall.vbs</code></td>
-      <td>Remove <code>bin</code> from user PATH</td>
-    </tr>
-    <tr>
-      <td>Manual Add to PATH</td>
-      <td>Environment Variables GUI</td>
-      <td>Add <code>bin</code> folder manually</td>
-    </tr>
-    <tr>
-      <td>Manual Remove from PATH</td>
-      <td>Environment Variables GUI</td>
-      <td>Remove <code>bin</code> folder manually</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>For more help, please consult your system administrator or Windows documentation on environment variables.</p>
-
+    <h1>Better-cmd Installation Guide</h1>
+    
+    <div class="note-box">
+        <p>This document explains how to install and uninstall Better-cmd by adding or removing the program's <code>bin</code> folder to/from your user PATH environment variable on Windows.</p>
+    </div>
+    
+    <h2>Installation Process</h2>
+    
+    <div class="step">
+        <div class="step-title">1. Automatic Installation</div>
+        <p>Run the installation script from Command Prompt or PowerShell:</p>
+        <pre><code>cscript //nologo install.vbs</code></pre>
+        
+        <p><strong>What happens:</strong></p>
+        <ul>
+            <li>The script detects the <code>bin</code> folder located next to it</li>
+            <li>Adds this folder to your user PATH if not already present</li>
+            <li>Shows confirmation message upon success</li>
+        </ul>
+    </div>
+    
+    <div class="step">
+        <div class="step-title">2. Automatic Uninstallation</div>
+        <p>To remove Better-cmd from your PATH:</p>
+        <pre><code>cscript //nologo uninstall.vbs</code></pre>
+        
+        <p><strong>What happens:</strong></p>
+        <ul>
+            <li>The script removes the <code>bin</code> folder from your user PATH</li>
+            <li>Shows confirmation message upon completion</li>
+        </ul>
+    </div>
+    
+    <div class="warning-box">
+        <p><strong>Important Notes:</strong></p>
+        <ul>
+            <li>Only modifies your user PATH (no system-wide changes)</li>
+            <li>No administrator privileges required</li>
+            <li>Restart your terminal after installation/uninstallation</li>
+            <li>Scripts don't copy files - ensure <code>bin</code> folder exists</li>
+        </ul>
+    </div>
+    
+    <h2>Manual Installation</h2>
+    
+    <div class="step">
+        <div class="step-title">1. Adding to PATH Manually</div>
+        <ol>
+            <li>Open Start Menu → Search for "Environment Variables" → Select "Edit the system environment variables"</li>
+            <li>In System Properties, click "Environment Variables..."</li>
+            <li>Under <strong>User variables</strong>, select <code>Path</code> → Click <strong>Edit</strong></li>
+            <li>Click <strong>New</strong> → Enter full path to the <code>bin</code> folder</li>
+            <li>Click <strong>OK</strong> to save changes</li>
+            <li>Restart your terminal</li>
+        </ol>
+    </div>
+    
+    <div class="step">
+        <div class="step-title">2. Removing from PATH Manually</div>
+        <ol>
+            <li>Follow steps 1-3 above to open PATH editor</li>
+            <li>Select the <code>bin</code> folder entry → Click <strong>Delete</strong></li>
+            <li>Save changes and restart terminal</li>
+        </ol>
+    </div>
+    
+    <h2>Advanced Configuration</h2>
+    
+    <div class="step">
+        <div class="step-title">Changing Installation Location</div>
+        <p>To move Better-cmd to a different location:</p>
+        <ol>
+            <li>Move the entire folder containing <code>bin</code> to new location</li>
+            <li>Remove old path (using uninstall script or manually)</li>
+            <li>Add new path (using install script or manually)</li>
+            <li>Restart terminal</li>
+        </ol>
+        
+        <div class="note-box">
+            <p><strong>Note:</strong> The VBScript expects the <code>bin</code> folder to be adjacent to it. Moving folders separately may require manual PATH updates.</p>
+        </div>
+    </div>
+    
+    <h2>Troubleshooting</h2>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Issue</th>
+                <th>Solution</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Script execution blocked</td>
+                <td>Check Windows Script Host is enabled or run as Administrator</td>
+            </tr>
+            <tr>
+                <td>Commands not recognized</td>
+                <td>
+                    <ul>
+                        <li>Restart terminal</li>
+                        <li>Check PATH with <code>echo %PATH%</code></li>
+                        <li>Verify executables exist in <code>bin</code></li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td>Multiple versions</td>
+                <td>PATH order determines which version runs - keep only one</td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <h2>Quick Reference</h2>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Action</th>
+                <th>Command</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Install</td>
+                <td><code>cscript //nologo install.vbs</code></td>
+                <td>Adds to user PATH</td>
+            </tr>
+            <tr>
+                <td>Uninstall</td>
+                <td><code>cscript //nologo uninstall.vbs</code></td>
+                <td>Removes from user PATH</td>
+            </tr>
+            <tr>
+                <td>Check PATH</td>
+                <td><code>echo %PATH%</code></td>
+                <td>Displays current PATH</td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <footer>
+        Better-cmd Installation Guide | Version 0.0.8
+    </footer>
 </body>
 </html>

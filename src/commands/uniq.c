@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "../libs/ansi_colors.h"
-#include "../libs/uthash.h"
+#include "../libs/uthsah.h"
 
 #define MAX_LINE_LEN 4096
 
