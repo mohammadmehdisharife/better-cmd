@@ -29,8 +29,8 @@ Its lightweight, dependency-free design makes it especially well-suited for embe
 For detailed installation instructions, please refer to the comprehensive documentation provided in the `INSTALLATION.html` file.
 
 In summary:  
-- Move the `build` directory to your preferred installation location.  
-- Add the `src` folder inside the `build` directory to your system’s PATH environment variable to enable seamless execution from any command prompt.
+- Move the `bettercmd` directory to your preferred installation location.  
+- Add the `src` folder inside the `bettercmd` directory to your system’s PATH environment variable to enable seamless execution from any command prompt.
 
 Better-CMD’s design prioritizes minimal dependencies and zero abstraction layers, ensuring high performance and reliability even in constrained environments. Its robust color and emoji support improves user experience, making it an excellent choice for professional and embedded use cases alike.
 
