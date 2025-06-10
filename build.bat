@@ -5,10 +5,11 @@ rem === Configuration ===
 set "SRC=src\commands"
 set "BUILD=bettercmd\bin"
 set "VBS_SRC=src\scripts"
-set "COMMANDS=ls ll now cat pwd touch clear stat head tail basename dirname sleep wc randnum randword uptime uniq env pure man"
+set "COMMANDS=ls ll now cat pwd touch clear stat head tail basename dirname sleep wc randnum randword uptime uniq env pure man runtime"
 set "VBS=install.vbs uninstall.vbs"
 
 rem === Cleanup ===
+cls
 echo [*] Cleaning previous build...
 if exist "bettercmd" (
     rmdir /s /q "bettercmd"
