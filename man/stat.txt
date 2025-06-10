@@ -1,0 +1,25 @@
+NAME
+    stat - display file or file system status
+
+SYNOPSIS
+    stat <file_name>
+
+DESCRIPTION
+    The stat program displays detailed information about a file or directory.
+    This includes the file's size, attributes, creation time, last modification time,
+    last access time, and full path.
+
+    The output is formatted with labels for each field and uses ANSI escape codes for color.
+    The program sets the Windows console to UTF-8 mode to handle Unicode file names correctly.
+
+ERRORS
+    If the program is invoked with the wrong number of arguments, it prints a usage message and exits with status 1.
+    If the file attributes cannot be retrieved, the program exits with status 1.
+
+EXAMPLES
+    - Display status information for a file:
+        stat myfile.txt
+
+SEE ALSO
+    dir - Windows command to list files and directories
+    GetFileAttributesEx - Windows API function to retrieve file attributes

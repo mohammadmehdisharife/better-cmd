@@ -1,0 +1,55 @@
+NAME
+    ipconfig - Display and manage IP configuration
+
+SYNOPSIS
+    ipconfig [options]
+
+DESCRIPTION
+    The ipconfig command displays current TCP/IP network configuration values and modifies DHCP and DNS settings.
+    It is useful for verifying network settings, troubleshooting connectivity issues, and managing network adapters.
+
+OPTIONS
+    (no options)
+        Displays basic IP configuration information for all active network adapters, including IP address, subnet mask, and default gateway[3][5].
+
+    /all
+        Displays detailed configuration information for all network adapters, including MAC address, DHCP status, DNS servers, and more[3][6].
+
+    /release [adapter]
+        Releases the DHCP lease for the specified adapter. If no adapter is specified, it releases the lease for all adapters[3][4].
+
+    /renew [adapter]
+        Renews the DHCP lease for the specified adapter. If no adapter is specified, it renews the lease for all adapters[3][4].
+
+    /flushdns
+        Clears the DNS resolver cache[3][6].
+
+    /displaydns
+        Displays the contents of the DNS resolver cache[3].
+
+    /registerdns
+        Refreshes all DHCP leases and re-registers DNS names[7].
+
+    /? or /help
+        Displays a list of available options[6].
+
+EXAMPLES
+    - Display basic IP configuration:
+        ipconfig
+
+    - Display all IP configuration details:
+        ipconfig /all
+
+    - Release the IP address for the Ethernet adapter:
+        ipconfig /release Ethernet
+
+    - Renew the IP address for the Wi-Fi adapter:
+        ipconfig /renew Wi-Fi
+
+    - Clear the DNS cache:
+        ipconfig /flushdns
+
+SEE ALSO
+    ping - Test network connectivity
+    tracert - Trace route to a destination
+    netstat - Display active TCP connections, listening ports, and more

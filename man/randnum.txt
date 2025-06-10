@@ -1,0 +1,25 @@
+NAME
+    randnum - generate a random number between 0 and a specified maximum
+
+SYNOPSIS
+    randnum [max_number]
+
+DESCRIPTION
+    The randnum program generates and prints a random integer between 0 and the specified max_number (inclusive).
+    If no max_number is provided, it defaults to 100.
+
+    The program seeds the random number generator with the current time to produce different sequences on each run.
+
+ERRORS
+    If more than one argument is provided, the program prints a usage message and exits with status 1.
+    If the max_number argument is not a positive integer, the program prints an error message and exits with status 1.
+
+EXAMPLES
+    - Generate a random number between 0 and 100 (default):
+        randnum
+
+    - Generate a random number between 0 and 50:
+        randnum 50
+
+SEE ALSO
+    randword - generate a list of random words

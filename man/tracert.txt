@@ -1,0 +1,53 @@
+NAME
+    tracert - trace the route to a network host
+
+SYNOPSIS
+    tracert [options] [hostname or IP address]
+
+DESCRIPTION
+    The tracert command traces the path that packets take from the local computer to a specified network host.
+    It sends ICMP Echo Request packets with increasing TTL (Time To Live) values to discover each hop (router)
+    along the route until reaching the destination or the maximum number of hops.
+    This helps diagnose routing issues and identify where network delays or failures occur.
+
+OPTIONS
+    -d
+        Do not resolve IP addresses to hostnames. This speeds up the trace by skipping DNS lookups.
+
+    -h maximum_hops
+        Set the maximum number of hops to search for the target. Default is 30.
+
+    -w timeout
+        Set the timeout in milliseconds to wait for each reply. Default is 4000 ms.
+
+    -S srcaddr
+        Specify the source address to use (IPv6 only).
+
+    -4
+        Force using IPv4.
+
+    -6
+        Force using IPv6.
+
+EXAMPLES
+    - Trace route to a hostname:
+        tracert example.com
+
+    - Trace route to an IP address:
+        tracert 8.8.8.8
+
+    - Trace route without resolving hostnames:
+        tracert -d example.com
+
+    - Trace route with a maximum of 20 hops:
+        tracert -h 20 example.com
+
+SEE ALSO
+    ping - test network connectivity
+    ipconfig - Display and manage IP configuration
+    netstat - Display active TCP connections, listening ports, and more
+
+
+NOTES
+    If a hop does not respond, you may see "Request timed out" indicating that the router is not replying to ICMP packets.
+    The trace continues until the destination is reached or the maximum hops are exceeded.

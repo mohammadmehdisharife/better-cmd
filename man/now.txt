@@ -1,0 +1,20 @@
+NAME
+    now - display the current date and time with emoji and color
+
+SYNOPSIS
+    now
+
+DESCRIPTION
+    The now program prints the current local date and time in the format "YYYY-MM-DD HH:MM:SS".
+    The output is prefixed with a clock emoji (🕰️) and displayed in bold yellow color using ANSI escape codes.
+    It sets the Windows console to UTF-8 encoding and enables virtual terminal processing to support colored output and emoji display.
+
+EXAMPLES
+    - Display the current date and time:
+        now
+        Output example:
+        🕰️ 2025-06-10 07:59:00
+
+SEE ALSO
+    date - display or set the system date
+    time - display or set the system time

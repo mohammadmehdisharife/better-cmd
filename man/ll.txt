@@ -1,0 +1,18 @@
+NAME
+    ll - list directory contents in long format with colors and emojis
+
+SYNOPSIS
+    ll
+
+DESCRIPTION
+    The ll command lists files and directories in the current directory in a detailed long format.
+    It displays file type icons (emojis), file size (in bytes or human-readable format), and last modification date and time.
+    Output is colorized for better readability.
+
+EXAMPLES
+    - List detailed directory contents:
+        ll
+
+SEE ALSO
+    ls - list directory contents with colors and emojis
+    dir - Windows built-in command to list directory contents

@@ -1,0 +1,35 @@
+NAME
+    basename - print the base name of a given path
+
+SYNOPSIS
+    basename <path>
+
+DESCRIPTION
+    This program extracts and prints the base name (the last component) of a given file path.
+    It removes any trailing path separators ('/' on Unix-like systems or '\\' on Windows) before extracting the base name.
+    The base name is the final part of the path after the last path separator.
+
+    If the input path ends with one or more path separators, they are stripped first.
+    If the path is empty, it prints an empty line.
+    The program supports both Unix-style ('/') and Windows-style ('\\') path separators,
+    determined at compile time by the platform.
+
+ERRORS
+    If no operand (path) is provided, the program prints an error message and exits with status 1.
+    If memory allocation fails, it prints an error message and exits with status 1.
+
+EXAMPLES
+    - Extract base name from a Unix-style path:
+        ./basename /usr/local/bin/script.sh
+        Output: script.sh
+
+    - Extract base name from a Windows-style path:
+        ./basename C:\Program Files\App\app.exe
+        Output: app.exe
+
+    - Handle trailing separators:
+        ./basename /home/user/docs/
+        Output: docs
+
+SEE ALSO
+    dirname - print the directory part of a path

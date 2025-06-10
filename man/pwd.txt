@@ -1,0 +1,16 @@
+NAME
+    pwd - Print working directory
+
+SYNOPSIS
+    pwd
+
+DESCRIPTION
+    The pwd command displays the path of the current working directory.
+    This version supports ANSI color output.
+
+EXAMPLES
+    - Display the current directory with ANSI color:
+        pwd
+
+SEE ALSO
+    cd - Change the current directory

@@ -1,0 +1,28 @@
+NAME
+    touch - create an empty file or update file timestamps
+
+SYNOPSIS
+    touch <file1> [file2 ...]
+
+DESCRIPTION
+    The touch program creates new empty files or updates the last access and modification timestamps of existing files.
+    If a specified file does not exist, it will be created as an empty file.
+    If the file exists, its timestamps are updated to the current system time.
+
+    The program supports multiple files as arguments and processes each in order.
+    It sets the Windows console to UTF-8 mode and enables virtual terminal processing to support colored output.
+
+ERRORS
+    If no file operand is provided, the program prints an error message and exits with status 1.
+    If a file cannot be created or its timestamps cannot be updated, an error message is printed for that file.
+    The program returns a non-zero exit status if any errors occur.
+
+EXAMPLES
+    - Create a new empty file or update timestamps of an existing file:
+        touch file.txt
+
+    - Create or update multiple files:
+        touch file1.txt file2.txt file3.txt
+
+SEE ALSO
+    copy /b filename +,, - Windows command to update file timestamps

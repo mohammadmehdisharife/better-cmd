@@ -1,0 +1,52 @@
+NAME
+    chdir - Change the current directory
+
+SYNOPSIS
+    chdir [/d] [<drive>:][<path>]
+    chdir [..]
+
+DESCRIPTION
+    The chdir command displays the current directory or changes the current directory in the command prompt.
+    If used without parameters, it shows the current drive and directory.
+    When used with a path, it changes the working directory to the specified path.
+    The /d option changes both the current drive and directory.
+    Using only a drive letter (e.g., chdir C:) displays the current directory on that drive without changing the active drive.
+    The command is equivalent to cd.
+
+OPTIONS
+    /d
+        Changes the current drive in addition to changing the directory.
+
+    <drive>:
+        Specifies the drive to display or change.
+
+    <path>
+        Specifies the directory path to change to.
+
+    ..
+        Changes to the parent directory.
+
+    /?
+        Displays help information.
+
+EXAMPLES
+    - Display the current directory:
+        chdir
+
+    - Change to the root directory of the current drive:
+        chdir \
+
+    - Change to a specific directory on the current drive:
+        chdir Windows\System32
+
+    - Change to a directory on a different drive and switch to that drive:
+        chdir /d D:\Projects
+
+    - Change to the parent directory:
+        chdir ..
+
+    - Display the current directory on drive C without switching to it:
+        chdir C:
+
+SEE ALSO
+    cd - equivalent command to chdir

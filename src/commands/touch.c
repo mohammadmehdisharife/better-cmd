@@ -72,11 +72,6 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-    if (strcmp(argv[1], "-v") == 0 || strcmp(argv[1], "--version") == 0) {
-        system("bettercmd -v");
-        return 0;
-    }
-
     int errors = 0;
     for (int i = 1; i < argc; i++) {
         if (touchFile(argv[i]) != 0) {

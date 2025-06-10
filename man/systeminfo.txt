@@ -1,0 +1,44 @@
+NAME
+    systeminfo - display detailed system configuration information
+
+SYNOPSIS
+    systeminfo [/s Computer] [/u Domain\Userid] [/p Password] [/fo {TABLE|LIST|CSV}] [/nh] [/v]
+
+DESCRIPTION
+    The systeminfo command displays detailed configuration information about a computer, including operating system configuration, hardware information, network settings, and more.
+
+OPTIONS
+    /s Computer
+        Specifies the name or IP address of a remote computer. The default is the local computer.
+
+    /u Domain\Userid
+        Specifies the user context under which the command should execute.
+
+    /p Password
+        Specifies the password for the user context. Omitting this will prompt for the password.
+
+    /fo {TABLE|LIST|CSV}
+        Specifies the output format. Valid values are TABLE, LIST, and CSV. The default is TABLE.
+
+    /nh
+        Suppresses column headers in the TABLE and CSV output formats.
+
+    /v
+        Specifies that verbose output should be displayed.
+
+EXAMPLES
+    - Display system information for the local computer:
+        systeminfo
+
+    - Display system information for a remote computer:
+        systeminfo /s remotecomputer
+
+    - Display system information in list format:
+        systeminfo /fo LIST
+
+    - Display system information in CSV format without headers:
+        systeminfo /fo CSV /nh
+
+SEE ALSO
+    ver - display the operating system version
+    msinfo32 - GUI tool to display system information

@@ -1,0 +1,25 @@
+NAME
+    man - display the manual page for a command or topic
+
+SYNOPSIS
+    man <command>
+
+DESCRIPTION
+    The man program displays the manual page for the specified command or topic.
+    It provides detailed documentation including sections such as Name, Synopsis, Description, Options, Files, Exit Status, Author, and See Also.
+    This helps users understand how to use commands and learn about system configuration files.
+
+    If the manual page for the specified command is not found, an appropriate message is displayed.
+
+ERRORS
+    If no command or topic is specified, the program prints a usage message and exits with status 1.
+
+EXAMPLES
+    - Display the manual page for the ls command:
+        man ls
+
+    - Search for manual pages related to a keyword:
+        man -k keyword
+
+SEE ALSO
+    help - display help for shell built-in commands

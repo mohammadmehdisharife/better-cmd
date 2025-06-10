@@ -1,0 +1,27 @@
+NAME
+    head - output the first part of a file
+
+SYNOPSIS
+    head [OPTION]... FILE...
+
+DESCRIPTION
+    The head program prints the first few lines of a specified file to standard output.
+    By default, it prints the first 10 lines.
+
+OPTIONS
+    -n <number>
+        Output the first <number> lines instead of the default 10.
+
+ERRORS
+    If no file operand is provided, the program prints an error message and exits with status 1.
+    If the program cannot open the specified file, it prints an error message to standard error.
+
+EXAMPLES
+    - Print the first 10 lines of a file:
+        head myfile.txt
+
+    - Print the first 20 lines of a file:
+        head -n 20 myfile.txt
+
+SEE ALSO
+    tail - output the last part of a file

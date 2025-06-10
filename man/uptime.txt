@@ -1,0 +1,17 @@
+NAME
+    uptime - display how long the system has been running
+
+SYNOPSIS
+    uptime
+
+DESCRIPTION
+    The uptime program displays the amount of time the system has been running since it was last booted.
+    It shows the time in years, months, days, hours, minutes, seconds, and milliseconds.
+    The output is formatted with labels for each time unit and uses ANSI escape codes for color.
+
+EXAMPLES
+    - Display the system uptime:
+        uptime
+
+SEE ALSO
+    systeminfo - Windows command to display detailed system configuration information, including boot time

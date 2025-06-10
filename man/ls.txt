@@ -1,0 +1,24 @@
+NAME
+    ls - list directory contents
+
+SYNOPSIS
+    ls [-a]
+
+DESCRIPTION
+    The ls command lists the files and directories in the specified directory.
+    If no directory is specified, it lists the contents of the current directory.
+    This implementation supports only the -a option.
+
+OPTIONS
+    -a
+        Include hidden files and directories (those starting with a dot).
+
+EXAMPLES
+    - List all files and directories in the current directory:
+        ls
+
+    - List all files including hidden ones:
+        ls -a
+
+SEE ALSO
+    dir - Windows built-in command to list directory contents

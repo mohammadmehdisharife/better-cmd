@@ -1,0 +1,22 @@
+NAME
+    sleep - pause execution for a specified time
+
+SYNOPSIS
+    sleep <milliseconds>
+
+DESCRIPTION
+    The sleep program suspends execution for the specified number of milliseconds.
+    The duration must be provided as a single command-line argument representing milliseconds.
+
+ERRORS
+    If the argument is missing or invalid, the program prints a usage message and exits with status 1.
+
+EXAMPLES
+    - Pause execution for 2 seconds:
+        sleep 2000
+
+    - Pause execution for half a second:
+        sleep 500
+
+SEE ALSO
+    timeout - Windows command to wait for a specified time

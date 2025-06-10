@@ -8,16 +8,14 @@ DESCRIPTION
     The clear command clears the terminal screen and moves the cursor to the top-left corner.
     It is commonly used to refresh the display by removing previous output, providing a clean screen 
     for new output.
+    This command is equivalent to the 'cls' command in Windows.
 
 EXAMPLES
     - Clear the terminal screen:
         clear
 
-    - Show help message:
-        clear --help
-
 SEE ALSO
-    cls - clear termianl with cmd
+    cls - clear terminal with cmd
 
 NOTES
-    Only clears the visible page. The buffer and terminal history cannot be cleared.
+    The clear command usually only clears the visible screen 

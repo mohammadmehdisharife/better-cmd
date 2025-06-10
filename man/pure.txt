@@ -1,0 +1,36 @@
+NAME
+    pure - remove ANSI escape codes and emojis from input text
+
+SYNOPSIS
+    pure [file1 file2 ...]
+
+DESCRIPTION
+    The pure program reads text input from one or more files or standard input if no files are specified.
+    It processes the input by removing all ANSI escape codes (used for coloring and terminal control)
+    and all emojis encoded in UTF-8.
+    The cleaned text is then written to standard output.
+
+    This tool is useful for sanitizing terminal output or logs by stripping color codes and emojis,
+    producing plain text output.
+
+    When reading from files, each file is processed sequentially.
+    When no files are provided, pure reads from standard input.
+
+    The program sets the Windows console code page to UTF-8 to properly handle Unicode input and output.
+
+ERRORS
+    If a specified file cannot be opened, an error message is printed to standard error, and processing continues with the next file.
+    If memory allocation fails during processing, the program prints an error message and exits with status 1.
+
+EXAMPLES
+    - Remove ANSI codes and emojis from a file:
+        pure input.txt > output.txt
+
+    - Remove ANSI codes and emojis from multiple files:
+        pure file1.txt file2.txt > clean_output.txt
+
+    - Remove ANSI codes and emojis from piped input:
+        some_command | pure
+
+SEE ALSO
+    cat - concatenate and display files
