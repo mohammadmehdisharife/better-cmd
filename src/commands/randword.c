@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <time.h>
+#include <windows.h>
 #include "../libs/ansi_colors.h"
 
 #define WORD_LENGTH 5
@@ -14,6 +14,12 @@ void generate_random_word(char *word, int length) {
         word[i] = random_char();
     }
     word[length] = '\0';
+}
+
+unsigned int high_precision_seed() {
+    LARGE_INTEGER counter;
+    QueryPerformanceCounter(&counter);
+    return (unsigned int)(counter.QuadPart);
 }
 
 int main(int argc, char *argv[]) {
@@ -30,7 +36,7 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-    srand((unsigned int)time(NULL));
+    srand(high_precision_seed());
     char word[WORD_LENGTH + 1];
 
     for (int i = 0; i < count; i++) {
