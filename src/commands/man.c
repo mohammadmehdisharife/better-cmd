@@ -1,13 +1,14 @@
 #include <windows.h>
 #include <stdio.h>
 #include <string.h>
+#include "../libs/ansi_colors.h"
 
 void printFile(const char *filename)
 {
     FILE *file = fopen(filename, "r");
     if (file == NULL)
     {
-        printf("\033[1;31mThere is no man page for %s\n\033[0m", filename);
+        printf(ANSI_BOLD_RED "There is no man page for %s\n" ANSI_RESET, filename);
         return;
     }
     char line[1024];
@@ -22,7 +23,7 @@ int main(int argc, char *argv[])
 {
     if (argc < 2)
     {
-        printf("\033[1;31mUsage: %s <filename>\n\033[0m", argv[0]);
+        printf(ANSI_BOLD_RED "Usage: %s <filename>\n" ANSI_RESET, argv[0]);
         return 1;
     }
 
@@ -30,7 +31,7 @@ int main(int argc, char *argv[])
     DWORD length = GetModuleFileNameA(NULL, exe_path, MAX_PATH);
     if (length == 0 || length == MAX_PATH)
     {
-        printf("\033[1;31mError getting executable path\n\033[0m");
+        printf(ANSI_BOLD_RED "Error getting executable path\n" ANSI_RESET);
         return 1;
     }
 

@@ -69,6 +69,6 @@ int main(int argc, char *argv[]) {
     printField("Accessed", accessed);
     printField("Path", fullpath);
 
-    printf(ANSI_RESET "\n");
+    printf(ANSI_RESET);
     return 0;
 }

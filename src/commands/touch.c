@@ -60,7 +60,7 @@ int touchFile(const char *filename) {
     }
 
     CloseHandle(hFile);
-    printf(ANSI_BOLD_GREEN "📝 Touched file: %s\n" ANSI_RESET, filename);
+    printf(ANSI_BOLD_YELLOW "📝 Touched file: %s\n" ANSI_RESET, filename);
     return 0;
 }
 

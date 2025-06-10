@@ -11,7 +11,7 @@
 
 int main(int argc, char *argv[]) {
     if (argc != 2) {
-        fprintf(stderr, ANSI_BOLD_WHITE "dirname: missing operand\n" ANSI_RESET);
+        fprintf(stderr, ANSI_BOLD_RED "Usage: %s <path>\n" ANSI_RESET, argv[0]);
         return 1;
     }
 
@@ -19,13 +19,13 @@ int main(int argc, char *argv[]) {
     size_t len = strlen(path);
 
     if (len == 0) {
-        printf(ANSI_BOLD_WHITE ".\n" ANSI_RESET);
+        printf(".\n");
         return 0;
     }
 
     char *copy = malloc(len + 1);
     if (!copy) {
-        fprintf(stderr, ANSI_BOLD_WHITE "dirname: memory error\n" ANSI_RESET);
+        fprintf(stderr, ANSI_BOLD_RED "dirname: memory error\n" ANSI_RESET);
         return 1;
     }
     strcpy(copy, path);

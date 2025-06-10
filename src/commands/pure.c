@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <windows.h>
+#include "../libs/ansi_colors.h"
 
 int is_emoji(const char *text) {
     if ((unsigned char)text[0] >= 0xF0)
@@ -59,7 +60,7 @@ int process_input(FILE *input) {
     while (!feof(input)) {
         buffer = realloc(buffer, buffer_size + 4096);
         if (!buffer) {
-            perror("Memory allocation failed");
+            perror(ANSI_BOLD_RED"Memory allocation failed"ANSI_RESET);
             return 1;
         }
         
@@ -94,7 +95,7 @@ int main(int argc, char *argv[]) {
         for (int i = 1; i < argc; i++) {
             FILE *file = fopen(argv[i], "rb");
             if (!file) {
-                fprintf(stderr, "Error opening file: %s\n", argv[i]);
+                fprintf(stderr, ANSI_BOLD_RED"Error opening file: %s\n"ANSI_RESET, argv[i]);
                 continue;
             }
             

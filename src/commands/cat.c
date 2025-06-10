@@ -4,13 +4,13 @@
 
 int main(int argc, char *argv[]) {
     if (argc != 2) {
-        fprintf(stderr, ANSI_BOLD_WHITE "cat: missing file operand\n" ANSI_RESET);
+        fprintf(stderr, ANSI_BOLD_RED "cat: missing file operand\n" ANSI_RESET);
         return 1;
     }
 
     FILE *file = fopen(argv[1], "r");
     if (!file) {
-        fprintf(stderr, ANSI_BOLD_WHITE "cat: cannot open '%s'\n" ANSI_RESET, argv[1]);
+        fprintf(stderr, ANSI_BOLD_RED "cat: cannot open '%s'\n" ANSI_RESET, argv[1]);
         return 1;
     }
 
