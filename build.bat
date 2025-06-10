@@ -54,30 +54,14 @@ for %%F in (%VBS%) do (
     )
 )
 
-rem === Copy INSTALLATION.html from docs ===
-echo [*] Copying INSTALLATION.html...
-if exist docs\INSTALLATION.html (
-    copy docs\INSTALLATION.html "bettercmd\" /Y >nul
+rem === Copy all files from docs to bettercmd ===
+for %%F in (docs\*.*) do (
+    echo [*] Copying %%~nxF...
+    copy "%%F" "bettercmd\" /Y >nul
     if errorlevel 1 (
-        echo [!] Failed to copy INSTALLATION.html
+        echo [!] Failed to copy %%~nxF
         exit /b 1
     )
-) else (
-    echo [!] docs\INSTALLATION.html not found!
-    exit /b 1
-)
-
-rem === Copy version.info from docs ===
-echo [*] Copying version.info...
-if exist docs\version.info (
-    copy docs\version.info "bettercmd\" /Y >nul
-    if errorlevel 1 (
-        echo [!] Failed to copy version.info
-        exit /b 1
-    )
-) else (
-    echo [!] docs\version.info not found!
-    exit /b 1
 )
 
 rem === Create ZIP archive using tar ===
