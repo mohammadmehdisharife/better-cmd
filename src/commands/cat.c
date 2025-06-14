@@ -6,7 +6,7 @@
 
 int main(int argc, char *argv[]) {
     if (argc != 2) {
-        fprintf(stderr, "Error: Input must come from a pipe or file.\n");
+        fprintf(stderr, ANSI_BOLD_RED"Error: Input must come from a pipe or file.\n"ANSI_RESET);
         return 1;
     }
 
