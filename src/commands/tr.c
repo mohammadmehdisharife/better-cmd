@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <windows.h>
+#include "../libs/ansi_colors.h"
 
 #define BUFFER_SIZE 8192
 
@@ -22,7 +23,7 @@ void remove_substring(const char *input, const char *sub, char *output) {
 
 int main(int argc, char *argv[]) {
     if (argc != 2) {
-        fprintf(stderr, "Usage: %s <substring_to_remove>\n", argv[0]);
+        fprintf(stderr, ANSI_BOLD_RED"Usage: %s <substring_to_remove>\n"ANSI_RESET, argv[0]);
         return 1;
     }
 
@@ -31,7 +32,7 @@ int main(int argc, char *argv[]) {
     DWORD mode;
 
     if (GetConsoleMode(hInput, &mode)) {
-        fprintf(stderr, "Error: Input must come from a pipe or file.\n");
+        fprintf(stderr, ANSI_BOLD_RED"Error: Input must come from a pipe or file.\n"ANSI_RESET);
         return 1;
     }
 
