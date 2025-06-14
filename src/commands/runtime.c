@@ -7,7 +7,7 @@ int main(int argc, char *argv[])
 {
     if (argc < 2)
     {
-        fprintf(stderr, ANSI_BOLD_RED "Usage: runtime <command>\n");
+        fprintf(stderr, ANSI_BOLD_RED "Usage: runtime <command>\n"ANSI_RESET);
         return 1;
     }
 

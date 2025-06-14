@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <windows.h>
 #include "../libs/ansi_colors.h"
 #include "../libs/uthsah.h"
 
@@ -17,14 +18,20 @@ int main(int argc, char *argv[]) {
     LineEntry *seen_lines = NULL; 
     LineEntry *entry = NULL;
 
-    if (argc == 2) {
+    if (argc == 1) {
+        HANDLE hInput = GetStdHandle(STD_INPUT_HANDLE);
+        DWORD mode;
+        if (GetConsoleMode(hInput, &mode)) {
+            fprintf(stderr, ANSI_BOLD_RED "Error: Input must come from a pipe or file.\n" ANSI_RESET);
+            return 1;
+        }
+        fp = stdin;
+    } else if (argc == 2) {
         fp = fopen(argv[1], "r");
         if (!fp) {
             fprintf(stderr, ANSI_BOLD_RED "Error: Cannot open file %s\n" ANSI_RESET, argv[1]);
             return 1;
         }
-    } else if (argc == 1) {
-        fp = stdin;
     } else {
         fprintf(stderr, ANSI_BOLD_YELLOW "Usage: %s [file]\n" ANSI_RESET, argv[0]);
         return 1;
