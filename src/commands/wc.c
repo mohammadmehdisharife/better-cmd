@@ -7,16 +7,13 @@ int count_file(FILE *fp, unsigned long *lines, unsigned long *words, unsigned lo
 {
     int c;
     int in_word = 0;
-
     *lines = *words = *chars = 0;
 
     while ((c = fgetc(fp)) != EOF)
     {
         (*chars)++;
-
         if (c == '\n')
             (*lines)++;
-
         if (isspace(c))
         {
             if (in_word)
@@ -30,12 +27,8 @@ int count_file(FILE *fp, unsigned long *lines, unsigned long *words, unsigned lo
             in_word = 1;
         }
     }
-
     if (in_word)
-    {
         (*words)++;
-    }
-
     return 0;
 }
 
@@ -73,14 +66,11 @@ int main(int argc, char *argv[])
     count_file(fp, &lines, &words, &chars);
 
     if (fp != stdin)
-    {
         fclose(fp);
-        printf("%lu %lu %lu %s\n", lines, words, chars, argv[1]);
-    }
-    else
-    {
-        printf("%lu %lu %lu\n", lines, words, chars);
-    }
+
+    printf(ANSI_BOLD_YELLOW "LINE: " ANSI_BOLD_WHITE "%lu\n" ANSI_RESET, lines);
+    printf(ANSI_BOLD_YELLOW "WORD: " ANSI_BOLD_WHITE "%lu\n" ANSI_RESET, words);
+    printf(ANSI_BOLD_YELLOW "CHAR: " ANSI_BOLD_WHITE "%lu\n" ANSI_RESET, chars);
 
     return 0;
 }

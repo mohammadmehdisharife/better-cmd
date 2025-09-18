@@ -56,7 +56,6 @@ int main(int argc, char *argv[]) {
     printAttributes(data.dwFileAttributes, attrStr, sizeof(attrStr));
     GetFullPathNameA(argv[1], MAX_PATH, fullpath, NULL);
 
-    printf("\n");
     printField("Name", argv[1]);
 
     char sizeStr[32];
