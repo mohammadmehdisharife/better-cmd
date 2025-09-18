@@ -1,5 +1,5 @@
 @echo off
-set TAG_NAME=v0.1.3-Stable
+set TAG_NAME=v0.1.4-Stable
 
 echo Creating git tag %TAG_NAME%
 git tag %TAG_NAME%
