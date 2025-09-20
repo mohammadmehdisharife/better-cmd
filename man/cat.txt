@@ -1,20 +1,10 @@
+CAT(1)                     Better-cmd Manual                     CAT(1)
+
 NAME
-    cat - concatenate and print files
+    cat - Displays everything from a file or piped input
 
 SYNOPSIS
-    cat <file>
+    cat [file]
 
 DESCRIPTION
-    The cat program reads the specified file and writes its contents to the standard output.
-    It is commonly used to display the content of a file on the terminal.
-
-ERRORS
-    If no file operand is provided, the program prints an error message and exits with status 1.
-    If the program cannot open the specified file, it prints an error message and exits with status 1.
-
-EXAMPLES
-    - Display the contents of a file:
-        cat myfile.txt
-
-SEE ALSO
-    touch - create file
+    Displays all content received from a file or through a pipe.

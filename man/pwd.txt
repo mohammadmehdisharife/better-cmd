@@ -1,16 +1,10 @@
+PWD(1)                     Better-cmd Manual                     PWD(1)
+
 NAME
-    pwd - Print working directory
+    pwd - Prints current working directory
 
 SYNOPSIS
     pwd
 
 DESCRIPTION
-    The pwd command displays the path of the current working directory.
-    This version supports ANSI color output.
-
-EXAMPLES
-    - Display the current directory with ANSI color:
-        pwd
-
-SEE ALSO
-    cd - Change the current directory
+    Displays the full path of the current working directory

@@ -1,25 +1,10 @@
+RANDWORD(1)               Better-cmd Manual               RANDWORD(1)
+
 NAME
-    randword - generate a list of random words
+    randword - Generates random words
 
 SYNOPSIS
     randword [count]
 
 DESCRIPTION
-    The randword program generates a list of random words, each consisting of 5 lowercase letters.
-    By default, it generates 10 words. The number of words to generate can be specified as a command-line argument.
-
-    The program seeds the random number generator with the current time to produce different sequences on each run.
-
-ERRORS
-    If the count argument is provided but is not a positive integer, the program prints an error message and exits with status 1.
-    If more than one argument is provided, the program prints a usage message and exits with status 1.
-
-EXAMPLES
-    - Generate 10 random words (default):
-        randword
-
-    - Generate 20 random words:
-        randword 20
-
-SEE ALSO
-    randnum - generate a random number
+    Generates a sequence of random words (default 10 words)

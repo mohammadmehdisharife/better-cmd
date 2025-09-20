@@ -1,0 +1,10 @@
+PS(1)                    Better-cmd Manual                    PS(1)
+
+NAME
+    ps - Shows a list of running processes
+
+SYNOPSIS
+    ps
+
+DESCRIPTION
+    Displays information about all processes currently running.

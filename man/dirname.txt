@@ -1,40 +1,10 @@
+DIRNAME(1)                Better-cmd Manual                DIRNAME(1)
+
 NAME
-    dirname - print the directory portion of a given path
+    dirname - Prints all components of a path except the last one
 
 SYNOPSIS
-    dirname <path>
+    dirname [path]
 
 DESCRIPTION
-    The dirname program extracts and prints the directory part of a given file path.
-    It removes the last component (the base name) from the path, leaving the directory path.
-    Trailing path separators ('/' on Unix-like systems or '\\' on Windows) are removed before processing.
-    If the path contains no directory component, it prints '.' indicating the current directory.
-    If the path consists entirely of slashes, it prints a single slash '/'.
-    If the path is empty, it prints '.'.
-
-    The program supports both Unix-style ('/') and Windows-style ('\\') path separators,
-    determined at compile time by the platform.
-
-ERRORS
-    If no operand (path) is provided, the program prints an error message and exits with status 1.
-    If memory allocation fails, it prints an error message and exits with status 1.
-
-EXAMPLES
-    - Extract directory part from a Unix-style path:
-        ./dirname /usr/local/bin/script.sh
-        Output: /usr/local/bin
-
-    - Extract directory part from a Windows-style path:
-        ./dirname C:\Program Files\App\app.exe
-        Output: C:\Program Files\App
-
-    - Handle path with trailing slashes:
-        ./dirname /home/user/docs/
-        Output: /home/user
-
-    - Handle path with no directory component:
-        ./dirname filename.txt
-        Output: .
-
-SEE ALSO
-    basename - print the last component of a path
+    Takes a path and prints everything except the last component

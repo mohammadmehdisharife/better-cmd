@@ -1,0 +1,10 @@
+PASTE(1)                  Better-cmd Manual                  PASTE(1)
+
+NAME
+    paste - Prints the content currently stored in the clipboard
+
+SYNOPSIS
+    paste
+
+DESCRIPTION
+    Displays whatever is stored in the clipboard

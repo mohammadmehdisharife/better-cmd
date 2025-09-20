@@ -1,0 +1,10 @@
+TR(1)                      Better-cmd Manual                      TR(1)
+
+NAME
+    tr - Translates or removes characters from input
+
+SYNOPSIS
+    tr [set1]
+
+DESCRIPTION
+    Replaces or removes characters from the given input

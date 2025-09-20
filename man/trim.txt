@@ -1,0 +1,10 @@
+TRIM(1)                   Better-cmd Manual                   TRIM(1)
+
+NAME
+    trim - Removes extra whitespace
+
+SYNOPSIS
+    trim [file]
+
+DESCRIPTION
+    Removes leading and trailing spaces from pipe or a file

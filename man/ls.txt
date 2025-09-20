@@ -1,24 +1,13 @@
+LS(1)                     Better-cmd Manual                     LS(1)
+
 NAME
-    ls - list directory contents
+    ls - Lists directory contents in brief format (hidden files not shown)
 
 SYNOPSIS
-    ls [-a]
-
-DESCRIPTION
-    The ls command lists the files and directories in the specified directory.
-    If no directory is specified, it lists the contents of the current directory.
-    This implementation supports only the -a option.
+    ls [options]
 
 OPTIONS
-    -a
-        Include hidden files and directories (those starting with a dot).
+    -a    Lists directory contents including hidden files
 
-EXAMPLES
-    - List all files and directories in the current directory:
-        ls
-
-    - List all files including hidden ones:
-        ls -a
-
-SEE ALSO
-    dir - Windows built-in command to list directory contents
+DESCRIPTION
+    Lists directory contents in brief format (hidden files not shown). Use -a to include hidden files.

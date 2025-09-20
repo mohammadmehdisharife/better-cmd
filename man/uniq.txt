@@ -1,26 +1,10 @@
+UNIQ(1)                   Better-cmd Manual                   UNIQ(1)
+
 NAME
-    uniq - filter out duplicate lines from input
+    uniq - Removes duplicate lines
 
 SYNOPSIS
     uniq [file]
 
 DESCRIPTION
-    The uniq program reads lines from the specified file or standard input if no file is given,
-    and outputs only unique lines, removing any duplicate lines that have appeared before.
-    It preserves the order of the first occurrence of each unique line.
-
-    This implementation uses a hash table to track lines that have already been seen.
-
-ERRORS
-    If the specified file cannot be opened, an error message is printed and the program exits with status 1.
-    If more than one argument is provided, the program prints a usage message and exits with status 1.
-
-EXAMPLES
-    - Filter duplicate lines from a file:
-        uniq input.txt
-
-    - Filter duplicate lines from standard input:
-        some_command | uniq
-
-SEE ALSO
-    pure - remove ANSI escape codes and emojis from input text
+    Processes text and removes duplicate lines. Works with both pipe or file input

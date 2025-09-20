@@ -1,0 +1,10 @@
+TAIL(1)                   Better-cmd Manual                   TAIL(1)
+
+NAME
+    tail - Prints the end of a file
+
+SYNOPSIS
+    tail [file] [-n number]
+
+DESCRIPTION
+    Prints the last 10 lines of a file by default. Use -n to specify the number of lines

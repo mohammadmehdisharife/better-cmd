@@ -1,27 +1,10 @@
+WC(1)                       Better-cmd Manual                      WC(1)
+
 NAME
-    wc - print newline, word, and byte counts for each file
+    wc - Counts lines, words and characters
 
 SYNOPSIS
-    wc [filename]
+    wc [file]
 
 DESCRIPTION
-    The wc program counts the number of lines, words, and characters in the specified file.
-    If no filename is provided, it reads from standard input.
-
-    The program prints the counts to standard output, along with the filename if a file was specified.
-
-ERRORS
-    If the specified file cannot be opened, an error message is printed, and the program exits with status 1.
-    If more than one argument is provided, the program prints a usage message and exits with status 1.
-
-EXAMPLES
-    - Count lines, words, and characters in a file:
-        wc myfile.txt
-
-    - Count lines, words, and characters from standard input:
-        some_command | wc
-
-SEE ALSO
-    pure - remove ANSI escape codes and emojis from input text
-    uniq - filter out duplicate lines from input
-    
+    Counts lines, words and characters. Supports receiving input from a pipe

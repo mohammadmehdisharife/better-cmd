@@ -1,24 +1,10 @@
+RUNTIME(1)                Better-cmd Manual                RUNTIME(1)
+
 NAME
-    runtime - execute a shell command and display its total execution time
+    runtime - Displays program execution time
 
 SYNOPSIS
-    runtime <command>
+    runtime [command]
 
 DESCRIPTION
-    runtime is a simple command-line utility for Windows that executes the specified shell command
-    and prints the command output. After the command finishes, runtime displays the total elapsed time
-    in seconds that the command took to execute.
-
-OPTIONS
-    <command>
-        The shell command to execute. This should be passed as a single argument or quoted if it contains spaces.
-
-EXAMPLES
-    runtime echo Hello, world!
-        Executes the command "echo Hello, world!" and prints the output along with the total execution time.
-
-    runtime dir
-        Executes the "dir" command to list directory contents and shows the total time taken.
-
-SEE ALSO
-    sleep - pause execution for a specified time
+    Runs a command and shows how long it took to complete

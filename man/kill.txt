@@ -1,0 +1,10 @@
+KILL(1)                  Better-cmd Manual                  KILL(1)
+
+NAME
+    kill - Ends a running process
+
+SYNOPSIS
+    kill [pid]
+
+DESCRIPTION
+    Terminates the process with the specified process ID.
