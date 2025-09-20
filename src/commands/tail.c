@@ -1,55 +1,74 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <io.h>
 #include "../libs/ansi_colors.h"
 
-void printTail(const char *filename, int lines) {
-    FILE *file = fopen(filename, "r");
-    if (!file) {
-        fprintf(stderr, ANSI_BOLD_RED "tail: cannot open '%s'\n" ANSI_RESET, filename);
-        return;
-    }
+#define DEFAULT_LINES 10
+#define BUFFER_SIZE 1024
+#define MAX_LINES 10000
 
-    int total_lines = 0;
-    char buffer[4096];
-    while (fgets(buffer, sizeof(buffer), file)) {
-        total_lines++;
-    }
+void print_tail(FILE *fp, int nlines)
+{
+    char *lines[MAX_LINES];
+    int count = 0;
 
-    rewind(file);
-
-    int start_line = total_lines - lines;
-    if (start_line < 0) start_line = 0;
-
-    int current_line = 0;
-    while (fgets(buffer, sizeof(buffer), file)) {
-        if (current_line >= start_line) {
-            fputs(buffer, stdout);
+    char buffer[BUFFER_SIZE];
+    while (fgets(buffer, sizeof(buffer), fp) != NULL)
+    {
+        if (count < MAX_LINES)
+        {
+            lines[count] = strdup(buffer);
+            count++;
         }
-        current_line++;
     }
 
-    fclose(file);
+    int start = (count > nlines) ? count - nlines : 0;
+
+    for (int i = start; i < count; i++)
+    {
+        printf("%s", lines[i]);
+        free(lines[i]);
+    }
 }
 
-int main(int argc, char *argv[]) {
-    int lines = 10;
-    const char *filename = NULL;
+int main(int argc, char *argv[])
+{
+    int nlines = DEFAULT_LINES;
+    char *filename = NULL;
 
-    for (int i = 1; i < argc; i++) {
-        if (strcmp(argv[i], "-n") == 0 && i + 1 < argc) {
-            lines = atoi(argv[++i]);
-            if (lines < 0) lines = 10;
-        } else if (!filename) {
+    for (int i = 1; i < argc; i++)
+    {
+        if (strcmp(argv[i], "-n") == 0 && i + 1 < argc)
+        {
+            nlines = atoi(argv[++i]);
+        }
+        else
+        {
             filename = argv[i];
         }
     }
 
-    if (!filename) {
-        fprintf(stderr, ANSI_BOLD_RED "tail: missing file operand\n" ANSI_RESET);
-        return 1;
+    if (filename != NULL)
+    {
+        FILE *fp = fopen(filename, "r");
+        if (fp == NULL)
+        {
+            fprintf(stderr, ANSI_BOLD_RED "tail: cannot open '%s'\n" ANSI_RESET, filename);
+            return 1;
+        }
+        print_tail(fp, nlines);
+        fclose(fp);
+    }
+    else
+    {
+        if (_isatty(_fileno(stdin)))
+        {
+            fprintf(stderr, ANSI_BOLD_RED "tail: no input\n" ANSI_RESET);
+            return 1;
+        }
+        print_tail(stdin, nlines);
     }
 
-    printTail(filename, lines);
     return 0;
 }
