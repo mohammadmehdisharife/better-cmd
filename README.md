@@ -1,5 +1,7 @@
 ## Better-CMD — A Modern Enhancement for Windows CMD
 
+![GIF](./screenshots/BetterCMD.gif)
+
 > A contemporary, Bash-inspired superset of the Windows Command Prompt, equipped with intelligent features to enhance productivity.
 
 ---
@@ -21,6 +23,8 @@
 The default Windows shell has notable limitations. Better-CMD delivers a more efficient, practical, and modern command-line experience inspired by Bash, while maintaining full backward compatibility with the traditional `cmd.exe`. It offers powerful features without added complexity or unnecessary overhead.
 
 Its lightweight, dependency-free design makes it especially well-suited for embedded systems and environments where performance and stability are critical. Additionally, Better-CMD supports vibrant colorized output and rich emoji usage, significantly enhancing user interaction and readability.
+
+![GIF](./screenshots/LsClear.gif)
 
 ---
 
