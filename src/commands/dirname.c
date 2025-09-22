@@ -1,51 +1,66 @@
 #include <stdio.h>
-#include <string.h>
 #include <stdlib.h>
+#include <string.h>
+#include <windows.h>
 #include "../libs/ansi_colors.h"
 
-#ifdef _WIN32
-#define PATH_SEP '\\'
-#else
-#define PATH_SEP '/'
-#endif
+#define BUFFER_SIZE 1024
+
+int is_stdin_pipe(void) {
+    DWORD type = GetFileType(GetStdHandle(STD_INPUT_HANDLE));
+    return (type == FILE_TYPE_PIPE || type == FILE_TYPE_DISK);
+}
+
+int is_directory(const char *path) {
+    DWORD attrs = GetFileAttributesA(path);
+    if (attrs == INVALID_FILE_ATTRIBUTES)
+        return -1; 
+    return (attrs & FILE_ATTRIBUTE_DIRECTORY) ? 1 : 0;
+}
+
+void print_dirname(const char *path) {
+    char buffer[BUFFER_SIZE];
+    strncpy(buffer, path, BUFFER_SIZE - 1);
+    buffer[BUFFER_SIZE - 1] = '\0';
+
+    int dir_status = is_directory(buffer);
+    if (dir_status == -1) {
+        fprintf(stderr, ANSI_BOLD_RED "dirname: cannot access '%s'\n" ANSI_RESET, path);
+        return;
+    }
+
+    if (dir_status == 1 || buffer[strlen(buffer)-1] == '\\' || buffer[strlen(buffer)-1] == '/') {
+        printf("%s\n", buffer);
+        return;
+    }
+
+    char *last_slash = strrchr(buffer, '\\');
+    char *last_fslash = strrchr(buffer, '/');
+    char *pos = last_slash > last_fslash ? last_slash : last_fslash;
+
+    if (pos) {
+        *pos = '\0';
+        printf("%s\n", buffer);
+    } else {
+        printf(".\n");
+    }
+}
 
 int main(int argc, char *argv[]) {
-    if (argc != 2) {
-        fprintf(stderr, ANSI_BOLD_RED "Usage: %s <path>\n" ANSI_RESET, argv[0]);
-        return 1;
-    }
+    char buffer[BUFFER_SIZE];
 
-    char *path = argv[1];
-    size_t len = strlen(path);
-
-    if (len == 0) {
-        printf(".\n");
-        return 0;
-    }
-
-    char *copy = malloc(len + 1);
-    if (!copy) {
-        fprintf(stderr, ANSI_BOLD_RED "dirname: memory error\n" ANSI_RESET);
-        return 1;
-    }
-    strcpy(copy, path);
-
-    while (len > 1 && (copy[len - 1] == PATH_SEP || copy[len - 1] == '/')) {
-        copy[len - 1] = '\0';
-        len--;
-    }
-
-    char *last_sep = strrchr(copy, PATH_SEP);
-    if (!last_sep) {
-        printf(ANSI_BOLD_WHITE ".\n" ANSI_RESET);
-    } else if (last_sep == copy) {
-        copy[1] = '\0';
-        printf(ANSI_BOLD_WHITE "%s\n" ANSI_RESET, copy);
+    if (argc > 1) {
+        print_dirname(argv[1]);
+    } else if (is_stdin_pipe()) {
+        while (fgets(buffer, sizeof(buffer), stdin)) {
+            buffer[strcspn(buffer, "\r\n")] = '\0';
+            if (strlen(buffer) > 0)
+                print_dirname(buffer);
+        }
     } else {
-        *last_sep = '\0';
-        printf(ANSI_BOLD_WHITE "%s\n" ANSI_RESET, copy);
+        fprintf(stderr, ANSI_BOLD_RED "dirname: missing operand\n" ANSI_RESET);
+        return 1;
     }
 
-    free(copy);
     return 0;
 }
