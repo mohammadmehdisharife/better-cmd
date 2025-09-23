@@ -42,5 +42,6 @@ int main(void) {
     } while (Process32Next(hSnapshot, &pe32));
 
     CloseHandle(hSnapshot);
+    printf(ANSI_RESET);
     return 0;
 }
