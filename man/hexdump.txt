@@ -1,0 +1,13 @@
+HEXDUMP(1)                 User Commands                 HEXDUMP(1)
+
+NAME
+       hexdump — display file contents as hexadecimal and ASCII
+
+SYNOPSIS
+       hexdump [FILE]
+
+DESCRIPTION
+       hexdump is a simple and lightweight tool to display the bytes of a file
+       in hexadecimal and ASCII format. Each line shows the offset, hexadecimal
+       values, and printable ASCII characters. ANSI colors are used to enhance
+       readability by distinguishing different parts of the output.
