@@ -1,0 +1,11 @@
+TAC(1)                     Better-cmd Manual                     TAC(1)
+
+NAME
+    tac - Displays everything from a file or piped input in reverse order
+
+SYNOPSIS
+    tac [file]
+
+DESCRIPTION
+    Displays all content from a file or piped input, but with the lines
+    shown in reverse order (last line first).
