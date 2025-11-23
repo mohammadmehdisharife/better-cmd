@@ -40,6 +40,11 @@ Better-CMD’s design prioritizes minimal dependencies and zero abstraction laye
 
 ---
 
+## Contributors
+- [devsbutpersian](https://github.com/devsbutpersian)
+
+---
+
 ## License
 
 This project is distributed under the terms of the **[BSD 3-Clause License](./LICENSE)**.  
