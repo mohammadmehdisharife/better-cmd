@@ -9,31 +9,36 @@
 #define PATH_SEP '/'
 #endif
 
-int main(int argc, char *argv[]) {
-    if (argc != 2) {
-        fprintf(stderr, ANSI_BOLD_RED "Usage: %s <path>\n" ANSI_RESET, argv[0]);
-        return 1;
-    }
+int main(int argc, char *argv[])
+{
+    if (argc != 2)
+        {
+            fprintf(stderr, ANSI_BOLD_RED "Usage: %s <path>\n" ANSI_RESET, argv[0]);
+            return 1;
+        }
 
     char *path = argv[1];
     size_t len = strlen(path);
 
-    if (len == 0) {
-        printf("\n");
-        return 0;
-    }
+    if (len == 0)
+        {
+            printf("\n");
+            return 0;
+        }
 
     char *copy = malloc(len + 1);
-    if (!copy) {
-        fprintf(stderr, ANSI_BOLD_RED "basename: memory error\n" ANSI_RESET);
-        return 1;
-    }
+    if (!copy)
+        {
+            fprintf(stderr, ANSI_BOLD_RED "basename: memory error\n" ANSI_RESET);
+            return 1;
+        }
     strcpy(copy, path);
 
-    while (len > 1 && (copy[len - 1] == PATH_SEP || copy[len - 1] == '/')) {
-        copy[len - 1] = '\0';
-        len--;
-    }
+    while (len > 1 && (copy[len - 1] == PATH_SEP || copy[len - 1] == '/'))
+        {
+            copy[len - 1] = '\0';
+            len--;
+        }
 
     char *last_sep = strrchr(copy, PATH_SEP);
     char *base = last_sep ? last_sep + 1 : copy;

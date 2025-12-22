@@ -4,11 +4,13 @@
 #include <stdlib.h>
 #include "../libs/ansi_colors.h"
 
-void setConsoleUTF8() {
+void setConsoleUTF8()
+{
     SetConsoleOutputCP(CP_UTF8);
 }
 
-void formatFileTime(FILETIME ft, char *out, size_t size) {
+void formatFileTime(FILETIME ft, char *out, size_t size)
+{
     SYSTEMTIME stUTC, stLocal;
     FileTimeToSystemTime(&ft, &stUTC);
     SystemTimeToTzSpecificLocalTime(NULL, &stUTC, &stLocal);
@@ -17,7 +19,8 @@ void formatFileTime(FILETIME ft, char *out, size_t size) {
              stLocal.wHour, stLocal.wMinute, stLocal.wSecond);
 }
 
-void printAttributes(DWORD attr, char *out, size_t size) {
+void printAttributes(DWORD attr, char *out, size_t size)
+{
     out[0] = 0;
     if (attr & FILE_ATTRIBUTE_DIRECTORY) strcat(out, "Directory ");
     if (attr & FILE_ATTRIBUTE_HIDDEN) strcat(out, "Hidden ");
@@ -28,22 +31,26 @@ void printAttributes(DWORD attr, char *out, size_t size) {
     if (attr & FILE_ATTRIBUTE_REPARSE_POINT) strcat(out, "Link ");
 }
 
-void printField(const char *label, const char *value) {
+void printField(const char *label, const char *value)
+{
     printf(ANSI_BOLD_YELLOW "%-10s: " ANSI_BOLD_WHITE "%s\n", label, value);
 }
 
-int main(int argc, char *argv[]) {
-    if (argc != 2) {
-        fprintf(stderr, ANSI_BOLD_RED "Usage: %s <file_name>\n" ANSI_RESET, argv[0]);
-        return 1;
-    }
-    
+int main(int argc, char *argv[])
+{
+    if (argc != 2)
+        {
+            fprintf(stderr, ANSI_BOLD_RED "Usage: %s <file_name>\n" ANSI_RESET, argv[0]);
+            return 1;
+        }
+
     setConsoleUTF8();
 
     WIN32_FILE_ATTRIBUTE_DATA data;
-    if (!GetFileAttributesExA(argv[1], GetFileExInfoStandard, &data)) {
-        return 1;
-    }
+    if (!GetFileAttributesExA(argv[1], GetFileExInfoStandard, &data))
+        {
+            return 1;
+        }
 
     LARGE_INTEGER size;
     size.HighPart = data.nFileSizeHigh;
