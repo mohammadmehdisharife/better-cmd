@@ -5,8 +5,8 @@ rem === Configuration ===
 set "SRC=src\commands"
 set "BUILD=bettercmd\bin"
 set "VBS_SRC=src\scripts"
-set "COMMANDS=ls ll now cat pwd touch clear stat head tail basename dirname sleep wc randnum randword uptime uniq env pure man runtime trim tr paste ps kill tac hexdump"
-set "VBS=install.vbs uninstall.vbs"
+set "COMMANDS=ls ll now cat pwd touch clear stat head tail basename dirname sleep wc randnum randword uptime uniq env pure man runtime trim tr paste ps kill tac hexdump bettercmd"
+set "VBS=install.vbs uninstall.vbs bettercmd.bat"
 
 rem === Cleanup ===
 cls

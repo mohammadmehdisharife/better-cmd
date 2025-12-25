@@ -4,8 +4,8 @@
 SRC="src/commands"
 BUILD="bettercmd/bin"
 VBS_SRC="src/scripts"
-COMMANDS="ls ll now cat pwd touch clear stat head tail basename dirname sleep wc randnum randword uptime uniq env pure man runtime trim tr paste ps kill tac hexdump"
-VBS="install.vbs uninstall.vbs"
+COMMANDS="ls ll now cat pwd touch clear stat head tail basename dirname sleep wc randnum randword uptime uniq env pure man runtime trim tr paste ps kill tac hexdump bettercmd"
+VBS="install.vbs uninstall.vbs bettercmd.bat"
 
 # ===== Colors for output =====
 RED='\033[0;31m'
