@@ -1,7 +1,6 @@
 @echo off
 title bettercmd
 chcp 65001 >nul
-mode 52, 15
 
 :: Clear screen
 cls
